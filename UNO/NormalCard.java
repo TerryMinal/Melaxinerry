@@ -8,7 +8,7 @@ public class NormalCard extends Card{
     }//end overloaded constructor
 
     public String toString(){
-	String retStr;
+	String retStr = "";
 	if (color == 1){
 	    retStr = "red";
 	}

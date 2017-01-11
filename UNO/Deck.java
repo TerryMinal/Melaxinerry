@@ -4,6 +4,7 @@ public class Deck{
     public static ArrayList <Card>  createDeck(){
 	ArrayList <Card> deck = new ArrayList <Card> (108); //total 108 cards
 	int color= 1;
+	//normal cards
 	for (int a = 0; a < 1; a ++){
 	    color = 1;
 	    for (int i = 0; i < 4; i++){
@@ -25,12 +26,40 @@ public class Deck{
 		color ++;		    
 	    }
 	}
+	
+	//special cards (skip, reverse, draw2)
+	for (int d = 1; d < 4; d ++){
+	    color = 1;
+	    for (int i = 0; i < 4; i++){
+		deck.add(new SpecialCard(d, color));
+		color ++;		    
+	    }
+	}
+	for (int e = 1; e < 4; e ++){
+	    color = 1;
+	    for (int i = 0; i < 4; i++){
+		deck.add(new SpecialCard(e, color));
+		color ++;		    
+	    }
+	}
+
+	//wild
+	for (int f = 0; f < 4; f++){
+	    deck.add(new SpecialCard(4, 5));
+  		    
+	}
+
+	//wild draw 4
+	for (int g = 0; g < 4; g++){
+	    deck.add(new SpecialCard(5, 5));
+  		    
+	}
 	return deck;
     }
 				       
-    public static void main(String[] args){
-
-	System.out.println(createDeck());
-    }//end main
+public static void main(String[] args){
+    System.out.println(createDeck());
+	
+}//end main
     
 }//end class
