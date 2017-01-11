@@ -1,0 +1,8 @@
+public abstract class Card{
+    protected int color; // 1: red, 2: blue, 3: yellow, 4: green, 5:wild
+    protected int num; //0-9
+    protected int action;
+    //1: number, 2: reverse, 3: skip, 4: draw2, 5: wild, 6: wild & draw4
+
+    
+}//end class
