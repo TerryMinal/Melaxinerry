@@ -1,0 +1,21 @@
+﻿Melaxinerry: Xin Yi Chen, Melanie Chow, Terry Guan
+APCS1 pd4
+HW57 -- ...and Keeping It Pointed Up 
+2016-01-10
+
+
+ToDo:
+
+
+1. Write skeleton files for all the classes (WOO, Player, Deck, Card, SpecialCard, NormalCard)
+2. Implement Card, SpecialCard and NormalCard with instance variables, and constructors to assign properties (color, number, action, pointValue)
+3. Implement Player with instance variables, and constructors to assign properties (name, score, password, pin)
+4. Implement driver file main method tp “Roll dice”(random) or do a “Guess the number” to decide who goes first
+5. Implement Deck to be able to create 108 cards, and be able to shuffle 
+6. Implement Player to be able to draw cards, play cards with rules (eg matching the previous played card by number, color or action)
+7. Implement Card, SpecialCard and NormalCard and Player with rules (skip, reverse, draw2, wild, wild draw 4)
+8. Implement Player with the option to call “UNO” and penalties.
+9. Implement driver file with the method play() that represents one round of UNO.
+   1. In play(), for each turn each player must enter his/her pin before allow to play
+1. Implement driver file to give points to the winner of each round, and run play() again and again until one player reaches 500 points. 
+2. Do AI if there’s time.
