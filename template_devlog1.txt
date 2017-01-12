@@ -62,7 +62,6 @@ tales of wisdom gained...
 2017-01-11
 --------------------------------------------------------------
 Xin Yi Chen :: Added instance variables and overloaded constructors for Deck, Normal Card, Special Card. Implemented how to create a deck within the class Deck.  
-
-<Member> :: <Thing member did.>
+Melanie Chow :: Fixed flowchart algorithm for the driver: Demonstrated different paths, user inputs, loops, variable values, etc. 
 <Member> :: <Thing member did.>
 ==============================================================
