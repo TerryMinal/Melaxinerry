@@ -1,8 +1,15 @@
 import java.util.ArrayList;
 public class Deck{
+    protected int color; // 1: red, 2: blue, 3: yellow, 4: green, 5:wild/black
+    protected int pointVal; /*Number cards count their face value, all action cards count 20, and Wild and Wild Draw Four cards count 50. If a Draw Two or Wild Draw Four card is played to go out, the next player in sequence must draw the appropriate number of cards before the score is tallied.*/
+    
+    private ArrayList <Deck> deck;
+    private ArrayList <Deck> DrawPile;
+    private ArrayList <Deck> DiscardPile;
 
-    public static ArrayList <Card>  createDeck(){
-	ArrayList <Card> deck = new ArrayList <Card> (108); //total 108 cards
+    //creates a whole deck
+    public Deck(){
+        deck = new ArrayList <Deck> (108); //total 108 cards
 	int color= 1;
 	//normal cards
 	for (int a = 0; a < 1; a ++){
@@ -54,12 +61,20 @@ public class Deck{
 	    deck.add(new SpecialCard(5, 5));
   		    
 	}
-	return deck;
+    }//end constructor
+
+    public String toString(){
+	return deck.toString();
+    }
+    
+    public void shuffle(ArrayList <Deck> deck){
+	
     }
 				       
-public static void main(String[] args){
-    System.out.println(createDeck());
+    public static void main(String[] args){
+	Deck one = new Deck();
+	System.out.println(one);
 	
-}//end main
+    }//end main
     
 }//end class

@@ -10,16 +10,16 @@ public class NormalCard extends Card{
     public String toString(){
 	String retStr = "";
 	if (color == 1){
-	    retStr = "red";
+	    retStr = "Red:";
 	}
 	if (color == 2){
-	    retStr = "blue";
+	    retStr = "Blue:";
 	}
 	if (color == 3){
-	    retStr = "yellow";
+	    retStr = "Yellow:";
 	}
 	if (color == 4){
-	    retStr = "green";
+	    retStr = "Green:";
 	}
 	return retStr + num;
     }//end toString

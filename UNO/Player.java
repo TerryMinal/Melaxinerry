@@ -2,7 +2,7 @@ public class Player{
     protected String name;
     protected int score;
     protected int pin; //4-digit
-    protected ArrayList 
+    protected ArrayList <Card> currentCards;
     
     public Player(){
 	score = 0;
@@ -13,5 +13,10 @@ public class Player{
 	
     }
 
+    public void draw(){
+    }
 
+    public void callUNO(){
+    }
+    
 }//end class
