@@ -27,7 +27,7 @@ Flesh out each category whenever necessary, appropriate.
 ------------------------------------------
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-wow we so BOSS bc...
+Created objects with loops.
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -59,9 +59,10 @@ tales of wisdom gained...
 ==============================================================
 
 
-yyyy-mm-dd
+2017-01-11
 --------------------------------------------------------------
-<Member> :: <Thing member did.>
+Xin Yi Chen :: Added instance variables and overloaded constructors for Deck, Normal Card, Special Card. Implemented how to create a     deck within the class Deck.  
+
 <Member> :: <Thing member did.>
 <Member> :: <Thing member did.>
 ==============================================================
