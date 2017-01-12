@@ -10,67 +10,72 @@ public class Deck{
     //creates a whole deck
     public Deck(){
         deck = new ArrayList <Deck> (108); //total 108 cards
-	int color= 1;
-	//normal cards
-	for (int a = 0; a < 1; a ++){
-	    color = 1;
+	int detColor = 1;
+
+	//adds normal cards 0
+	for (int col = 1; col <= 4; col++) {
+	    deck.add(new NormalCard(0, col));
+	}
+	
+	//adds normal cards 1-9 
+	for (int num = 1; num <= 9; num++) {
+	    for (int col = 1; col <= 4; col++) {
+		for (int z = 0; z < 2; z++) {
+		    deck.add(new NormalCard(num, col)); 
+		}
+	    }
+	}
+
+	/* for (int a = 0; a < 1; a ++){
 	    for (int i = 0; i < 4; i++){
 		deck.add(new NormalCard(a, color));
-		color ++;		    
+		detColor ++;		    
 	    }
 	}
 	for (int b = 1; b < 10; b ++){
-	    color = 1;
+	    detColor = 1;
 	    for (int i = 0; i < 4; i++){
 		deck.add(new NormalCard(b, color));
-		color ++;		    
+		detColor ++;		    
 	    }
 	}
 	for (int c = 1; c < 10; c ++){
-	    color = 1;
+	    detColor = 1;
 	    for (int i = 0; i < 4; i++){
 		deck.add(new NormalCard(c, color));
-		color ++;		    
+		detColor ++;		    
 	    }
 	}
+	*/
 	
 	//special cards (skip, reverse, draw2)
-	for (int d = 1; d < 4; d ++){
-	    color = 1;
-	    for (int i = 0; i < 4; i++){
-		deck.add(new SpecialCard(d, color));
-		color ++;		    
-	    }
-	}
-	for (int e = 1; e < 4; e ++){
-	    color = 1;
-	    for (int i = 0; i < 4; i++){
-		deck.add(new SpecialCard(e, color));
-		color ++;		    
+	for (int d = 1; d <= 3; d ++){
+	    //cycling through colors
+	    for (int col = 1; col <= 4; col++){
+		for (int z = 0; z < 2; z++) {
+		    deck.add(new SpecialCard(d, col));
+		}
 	    }
 	}
 
-	//wild
+	//wild & wild draw 4
 	for (int f = 0; f < 4; f++){
 	    deck.add(new SpecialCard(4, 5));
-  		    
+	    deck.add(new SpecialCard(5,5)); 
 	}
 
-	//wild draw 4
-	for (int g = 0; g < 4; g++){
-	    deck.add(new SpecialCard(5, 5));
-  		    
-	}
     }//end constructor
 
     public String toString(){
 	return deck.toString();
     }
     
-    public void shuffle(ArrayList <Deck> deck){
-	
+    public void shuffle() {
+	for (int i = 0; i < 108; i++) {
+	    deck.set(i, deck.set((int) (Math.random() * 108)) ); 
+	}
     }
-				       
+
     public static void main(String[] args){
 	Deck one = new Deck();
 	System.out.println(one);
