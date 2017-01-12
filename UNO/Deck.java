@@ -10,8 +10,7 @@ public class Deck{
     //creates a whole deck
     public Deck(){
         deck = new ArrayList <Deck> (108); //total 108 cards
-	int detColor = 1;
-
+	
 	//adds normal cards 0
 	for (int col = 1; col <= 4; col++) {
 	    deck.add(new NormalCard(0, col));

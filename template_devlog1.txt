@@ -23,45 +23,26 @@ Flesh out each category whenever necessary, appropriate.
  but best done as you go along.
 
 
-/////////// Zone of Reflection \\\\\\\\\\\
-------------------------------------------
-OBSTACLES OVERCOME
+OBSTACLES OVERCOME: 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Created objects with loops.
 
-UNRESOLVED ISSUES
+UNRESOLVED ISSUES:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-blah blah pesky bug...
-maybe some of these will move into the Obs.Ovrcm section...
 
-COOL STUFF LEARNED
+COOL STUFF LEARNED:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-wow! oo!...
 
-MID-DEVELOPMENT DESIGN CHANGES
+MID-DEVELOPMENT DESIGN CHANGES: 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 we changed ___ to ___ bc...
 
-LESSONS LEARNED
+
+LESSONS LEARNED: 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-tales of wisdom gained...
-||||||||||||||||||||||||||||||||||||||||||
-
-
-
- ______   ______   __   __   __       ______   _______     
-/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\    
-\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__  
- \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\ 
-  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/ 
-   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \ 
-    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/ 
-==============================================================
-
 
 2017-01-11
 --------------------------------------------------------------
 Xin Yi Chen :: Added instance variables and overloaded constructors for Deck, Normal Card, Special Card. Implemented how to create a deck within the class Deck.  
 Melanie Chow :: Fixed flowchart algorithm for the driver: Demonstrated different paths, user inputs, loops, variable values, etc. 
-<Member> :: <Thing member did.>
-==============================================================
+Terry Guan :: Added distribute method to Woo.java. Made skeleton for Player.java. Optimized Deck.java and added shuffle method
+--------------------------------------------------------------
