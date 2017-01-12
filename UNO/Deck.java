@@ -3,13 +3,13 @@ public class Deck{
     protected int color; // 1: red, 2: blue, 3: yellow, 4: green, 5:wild/black
     protected int pointVal; /*Number cards count their face value, all action cards count 20, and Wild and Wild Draw Four cards count 50. If a Draw Two or Wild Draw Four card is played to go out, the next player in sequence must draw the appropriate number of cards before the score is tallied.*/
     
-    private ArrayList <Deck> deck;
-    private ArrayList <Deck> DrawPile;
-    private ArrayList <Deck> DiscardPile;
+    private ArrayList <Card> deck;
+    private ArrayList <Card> DrawPile;
+    private ArrayList <Card> DiscardPile;
 
     //creates a whole deck
     public Deck(){
-        deck = new ArrayList <Deck> (108); //total 108 cards
+        deck = new ArrayList <> (108); //total 108 cards
 	
 	//adds normal cards 0
 	for (int col = 1; col <= 4; col++) {
@@ -25,7 +25,8 @@ public class Deck{
 	    }
 	}
 
-	/* for (int a = 0; a < 1; a ++){
+	/*
+	 for (int a = 0; a < 1; a ++){
 	    for (int i = 0; i < 4; i++){
 		deck.add(new NormalCard(a, color));
 		detColor ++;		    
@@ -71,7 +72,7 @@ public class Deck{
     
     public void shuffle() {
 	for (int i = 0; i < 108; i++) {
-	    deck.set(i, deck.set((int) (Math.random() * 108)) ); 
+	    deck.set(i, deck.set((int) (Math.random() * 108), deck.get(i)) ); 
 	}
     }
 
