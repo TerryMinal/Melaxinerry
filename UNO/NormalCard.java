@@ -1,4 +1,4 @@
-public class NormalCard extends Card{
+public class NormalCard extends Deck{
     protected int num; //0-9
 
     public NormalCard(int i,int color1){
