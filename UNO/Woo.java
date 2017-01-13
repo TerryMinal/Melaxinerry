@@ -33,7 +33,7 @@ public class Woo {
    }
 
     //returns index of player that goes first;
-    public void rollDice(){
+    public void  rollDice(){
        	for (int i=0; i < allPlayers.size(); i++){
 	    allPlayers.set(i, allPlayers.set( (int) (Math.random() * allPlayers.size()), allPlayers.get(i) ) ); 
 	}
@@ -73,7 +73,7 @@ public class Woo {
 	rules+="-play a card matching the discard in either color, number, or symbol\n";
 	rules+="-play a Wild card, or a playable Wild Draw Four card\n";
 	rules+="-draw a card from the deck.\n";
-	rules+="-you must call UNO when you have one card left. If you didn¡¯t call UNO before your turn is over, you will draw 2 cards. If you call UNO when you have more than one card, you will draw 4 cards.\n";
+	rules+="-you must call UNO when you have one card left. If you didn't call UNO before your turn is over, you will draw 2 cards. If you call UNO when you have more than one card, you will draw 4 cards.\n";
 	rules+="How to Win:\n";
 	rules+="The first player to get rid of his/her last card wins the round and scores points for the cards held by the other players.Number cards count their face value, all action cards count 20, and Wild and Wild Draw Four cards count 50. If a Draw Two or Wild Draw Four card is played to go out, the next player in sequence must draw the appropriate number of cards before the score is tallied. \n";
 	rules+="First player to reach 500 points wins. \n";
