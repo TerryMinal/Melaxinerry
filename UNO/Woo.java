@@ -1,7 +1,7 @@
 
 import java.util.*;
 
-public class WOO{
+public class Woo {
 
     int numAi;
     int numRealPlayers;
@@ -59,7 +59,7 @@ public class WOO{
     }
     
     public static void main(String[] args){
-	WOO game = new WOO();
+	Woo game = new Woo();
 	game.beginGame();
     
     }//end main
