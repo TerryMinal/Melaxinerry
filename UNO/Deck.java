@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 public class Deck{
-    protected int color; // 1: red, 2: blue, 3: yellow, 4: green, 5:wild/black
-    protected int pointVal; /*Number cards count their face value, all action cards count 20, and Wild and Wild Draw Four cards count 50. If a Draw Two or Wild Draw Four card is played to go out, the next player in sequence must draw the appropriate number of cards before the score is tallied.*/
     
     private ArrayList <Card> deck;
     private ArrayList <Card> DrawPile;
@@ -9,7 +7,7 @@ public class Deck{
 
     //creates a whole deck
     public Deck(){
-        deck = new ArrayList <> (108); //total 108 cards
+        deck = new ArrayList <Card> (108); //total 108 cards
 	
 	//adds normal cards 0
 	for (int col = 1; col <= 4; col++) {
@@ -25,29 +23,6 @@ public class Deck{
 	    }
 	}
 
-	/*
-	 for (int a = 0; a < 1; a ++){
-	    for (int i = 0; i < 4; i++){
-		deck.add(new NormalCard(a, color));
-		detColor ++;		    
-	    }
-	}
-	for (int b = 1; b < 10; b ++){
-	    detColor = 1;
-	    for (int i = 0; i < 4; i++){
-		deck.add(new NormalCard(b, color));
-		detColor ++;		    
-	    }
-	}
-	for (int c = 1; c < 10; c ++){
-	    detColor = 1;
-	    for (int i = 0; i < 4; i++){
-		deck.add(new NormalCard(c, color));
-		detColor ++;		    
-	    }
-	}
-	*/
-	
 	//special cards (skip, reverse, draw2)
 	for (int d = 1; d <= 3; d ++){
 	    //cycling through colors
@@ -61,7 +36,7 @@ public class Deck{
 	//wild & wild draw 4
 	for (int f = 0; f < 4; f++){
 	    deck.add(new SpecialCard(4, 5));
-	    deck.add(new SpecialCard(5,5)); 
+	    deck.add(new SpecialCard(5,5));
 	}
 
     }//end constructor
@@ -69,17 +44,31 @@ public class Deck{
     public String toString(){
 	return deck.toString();
     }
-    
+
+    //first shuffle: for 108 cards
     public void shuffle() {
 	for (int i = 0; i < 108; i++) {
 	    deck.set(i, deck.set((int) (Math.random() * 108), deck.get(i)) ); 
 	}
     }
 
+    //returns an shuffled ArrayList of a given ArrayList
+     public static ArrayList <Card> shuffle(ArrayList <Card> input) {
+	  ArrayList<Card> shuffledDeck = new ArrayList<Card>();
+	for( Card x : input){
+	    shuffledDeck.add(x);
+	}
+	for (int i = 0; i < shuffledDeck.size(); i++) {
+	    shuffledDeck.set(i, shuffledDeck.set((int) (Math.random() * 108), shuffledDeck.get(i)) ); 
+	}
+	return shuffledDeck;
+    }
+
     public static void main(String[] args){
 	Deck one = new Deck();
+	one.shuffle();
 	System.out.println(one);
-	
+	System.out.println(shuffle(one.deck));
     }//end main
     
 }//end class
