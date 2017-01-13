@@ -5,6 +5,7 @@ public class Deck{
   
     //creates a whole deck
     public Deck(){
+	//the end of the array will be the top side of the deck 
         deck = new ArrayList <Card> (108); //total 108 cards
 	
 	//adds normal cards 0
@@ -53,6 +54,17 @@ public class Deck{
     public Card remove (int index) {
 	return deck.remove(index);
     }
+
+    public int size() {
+	return deck.size();
+    }
+
+    public void setDeck(ArrayList<Card> newArray) {
+	deck = new ArrayList<Card>();
+	for (Card x : newArray) {
+	    deck.add(x); 
+	}
+    }
     
     public String toString(){
 	return deck.toString();
@@ -60,7 +72,7 @@ public class Deck{
     
     public static void main(String[] args){
 	Deck one = new Deck();
-        one.shuffle();
+        one.size();
        	System.out.println(one);
     }//end main
     

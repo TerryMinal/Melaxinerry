@@ -1,3 +1,4 @@
+import java.util.*;
 public class Player{
     protected String name;
     protected int score;
@@ -8,16 +9,16 @@ public class Player{
 	this.name = name;
 	score = 0;
 	//pin = 0000;
-	currentCards = new ArrayList<Cards>();
+	currentCards = new ArrayList<Card>();
     }//end constructor
     
-    public void playCard(int index) {
-	
+    public void playCard(int index, ArrayList<Card> playedArea) {
+	playedArea.add(currentCards.remove(index)); 
     }
-
-    public void draw(Deck deck){
-	currentCards.add(deck.get(0));
-	deck.remove(0);
+    //takes card from end of the array 
+    public void draw(Deck deck) {
+	currentCards.add(deck.get(deck.size() - 1));
+	deck.remove(deck.size() - 1);
     }
 
     public int setScore(int score) {
