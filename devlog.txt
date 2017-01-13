@@ -27,14 +27,15 @@ OBSTACLES OVERCOME:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 UNRESOLVED ISSUES:
+Deck.java needs to be removed because it's more of annoying than helpful
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 COOL STUFF LEARNED:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 MID-DEVELOPMENT DESIGN CHANGES: 
+Deck.java needs to be removed because it's more of annoying than helpful
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-we changed ___ to ___ bc...
 
 
 LESSONS LEARNED: 
@@ -45,4 +46,10 @@ LESSONS LEARNED:
 Xin Yi Chen :: Added instance variables and overloaded constructors for Deck, Normal Card, Special Card. Implemented how to create a deck within the class Deck.  
 Melanie Chow :: Fixed flowchart algorithm for the driver: Demonstrated different paths, user inputs, loops, variable values, etc. 
 Terry Guan :: Added distribute method to Woo.java. Made skeleton for Player.java. Optimized Deck.java and added shuffle method
+--------------------------------------------------------------
+2017-01-12
+--------------------------------------------------------------
+Xin Yi Chen ::
+Melanie Chow ::
+Terry Guan :: wrote method beginGame() in Woo.java to distribute, and add players. Finished majority of Player.java. Updated Deck.java with mutators and accessor methods.  
 --------------------------------------------------------------
