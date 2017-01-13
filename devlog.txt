@@ -50,6 +50,6 @@ Terry Guan :: Added distribute method to Woo.java. Made skeleton for Player.java
 2017-01-12
 --------------------------------------------------------------
 Xin Yi Chen :: Worked on the main method in Woo.java. User can choose the number of players, and input their names and pins. The game is working until distributing the cards.
-Melanie Chow ::
+Melanie Chow :: Worked on "rolling the dice" and setting up a start screen (rules, multi/solo options), along with initial user inputs. Also updated the flowchart (mainly in terminology).
 Terry Guan :: wrote method beginGame() in Woo.java to distribute, and add players. Finished majority of Player.java. Updated Deck.java with mutators and accessor methods.  
 --------------------------------------------------------------
