@@ -2,17 +2,22 @@ public class Player{
     protected String name;
     protected int score;
     //protected int pin; //4-digit
-    protected ArrayList <Deck> currentCards;
+    protected ArrayList <Card> currentCards;
     
     public Player(String name){
 	this.name = name;
 	score = 0;
 	//pin = 0000;
-	currentCards = new ArrayList<Deck>();
+	currentCards = new ArrayList<Cards>();
     }//end constructor
     
     public void playCard(int index) {
 	
+    }
+
+    public void draw(Deck deck){
+	currentCards.add(deck.get(0));
+	deck.remove(0);
     }
 
     public int setScore(int score) {
@@ -21,10 +26,6 @@ public class Player{
 	return oldScore;
     }
     
-    public void draw(ArrayList<Deck> deck){
-	currentCards.add(deck.get(0));
-    }
-
     void sortCards(int whichSort) {
     }
 

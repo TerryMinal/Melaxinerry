@@ -3,8 +3,6 @@ public class Deck{
     
     private ArrayList <Card> deck; //the draw pile
   
-    private ArrayList <Card> DiscardPile;
-
     //creates a whole deck
     public Deck(){
         deck = new ArrayList <Card> (108); //total 108 cards
@@ -40,22 +38,30 @@ public class Deck{
 	}
 
     }//end constructor
-
-    public String toString(){
-	return deck.toString();
-    }
-
+    
     //shuffles the deck
      public void shuffle() {
-	for (int i = 0; i < this.deck.size(); i++) {
-	    deck.set(i, deck.set((int) (Math.random() * 108), deck.get(i)) ); 
-	}
+	 for (int i = 0; i < deck.size(); i++) {
+	     deck.set(i, deck.set((int) (Math.random() * 108), deck.get(i)) ); 
+	 }
+     }
+
+    public Card get(int index) {
+	return deck.get(index); 
     }
 
+    public Card remove (int index) {
+	return deck.remove(index);
+    }
+    
+    public String toString(){
+	return deck.toString();
+    }    
+    
     public static void main(String[] args){
 	Deck one = new Deck();
         one.shuffle();
-	System.out.println(one);
+       	System.out.println(one);
     }//end main
     
 }//end class
