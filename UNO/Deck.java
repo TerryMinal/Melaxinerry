@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 public class Deck{
     
-    private ArrayList <Card> deck;
-    private ArrayList <Card> DrawPile;
+    private ArrayList <Card> deck; //the draw pile
+  
     private ArrayList <Card> DiscardPile;
 
     //creates a whole deck
@@ -32,7 +32,7 @@ public class Deck{
 		}
 	    }
 	}
-
+	
 	//wild & wild draw 4
 	for (int f = 0; f < 4; f++){
 	    deck.add(new SpecialCard(4, 5));
@@ -45,30 +45,17 @@ public class Deck{
 	return deck.toString();
     }
 
-    //first shuffle: for 108 cards
-    public void shuffle() {
-	for (int i = 0; i < 108; i++) {
+    //shuffles the deck
+     public void shuffle() {
+	for (int i = 0; i < this.deck.size(); i++) {
 	    deck.set(i, deck.set((int) (Math.random() * 108), deck.get(i)) ); 
 	}
     }
 
-    //returns an shuffled ArrayList of a given ArrayList
-     public static ArrayList <Card> shuffle(ArrayList <Card> input) {
-	  ArrayList<Card> shuffledDeck = new ArrayList<Card>();
-	for( Card x : input){
-	    shuffledDeck.add(x);
-	}
-	for (int i = 0; i < shuffledDeck.size(); i++) {
-	    shuffledDeck.set(i, shuffledDeck.set((int) (Math.random() * 108), shuffledDeck.get(i)) ); 
-	}
-	return shuffledDeck;
-    }
-
     public static void main(String[] args){
 	Deck one = new Deck();
-	one.shuffle();
+        one.shuffle();
 	System.out.println(one);
-	System.out.println(shuffle(one.deck));
     }//end main
     
 }//end class
