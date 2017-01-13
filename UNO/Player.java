@@ -2,15 +2,19 @@ import java.util.*;
 public class Player{
     protected String name;
     protected int score;
-    //protected int pin; //4-digit
+    protected int pin; //4-digit
     protected ArrayList <Card> currentCards;
     
-    public Player(String name){
+    public Player(String name, int pin){
 	this.name = name;
 	score = 0;
-	//pin = 0000;
+	this.pin = pin;
 	currentCards = new ArrayList<Card>();
     }//end constructor
+
+    public String toString(){
+	return this.name + this.pin;
+    }
     
     public void playCard(int index, ArrayList<Card> playedArea) {
 	playedArea.add(currentCards.remove(index)); 

@@ -9,6 +9,8 @@ public class Woo {
     ArrayList<Player> allPlayers;
     ArrayList<Card> discardPile;
     Deck drawPile;
+    ArrayList<String> names; //all players' names
+    ArrayList<Integer> pins; //all players' pins corresponding to the index of names
     //instantiate players and put them in arraylist  
     public Woo() {
 	numAi = 0;
@@ -17,6 +19,9 @@ public class Woo {
 	discardPile = new ArrayList<Card>();
 	//drawPile = new ArrayList<Card>(108); 
 	drawPile = new Deck();
+	drawPile.shuffle();
+	names = new ArrayList <String>();
+	pins  = new ArrayList <Integer>();
     }
 
    public void distribute() {
@@ -44,10 +49,23 @@ public class Woo {
 	}
     }
 
-    //start screen etc goes here
+    //create the number of player
     public void beginGame() {
-	int typegame=0;
-	//----STRINGS-----------
+	for(int i = 0; i < numRealPlayers; i++){
+	    allPlayers.add(new Player(names.get(i),pins.get(i)));
+	}
+      	distribute();
+    }
+
+    //actual game methods go here
+    public void game() {
+	
+    
+    }
+    
+    public static void main(String[] args){
+	Woo game = new Woo();
+		//----STRINGS-----------
 	String rules="How to Play:\n";
 	rules+="A game of UNO consists of 2-5 players. Each player starts with 7 cards \n";
 	rules+="A dice is rolled to see who goes first.\n";
@@ -61,55 +79,51 @@ public class Woo {
 	rules+="First player to reach 500 points wins. \n";
 	rules+="==============================================\n";
 
-	String start="Lets start! \n"; 
-	start+="Enter 1 for Solo! \n";
-	start+="Enter 2 for multiplayer \n";
-	start+="Enter 3 for rules \n";
-
-	//-----------------------
-
-	System.out.println("Welcome to UNO! \n");
-	while (typegame< 1 || typegame > 3){
-	    System.out.print(start);
-	    typegame=Keyboard.readInt();
-	    if (typegame==3){
+	String start="Welcome to UNO!\n"; 
+	start+="Enter 1 for starting the game! \n";
+	start+="Enter 2 for rules \n";
+	System.out.println(start);
+	//-----------------------	
+	int typegame=Keyboard.readInt();
+	while (typegame < 1 || typegame >= 2){	   
+	    if (typegame==2){
 		System.out.print(rules);
 		typegame=0;
 	    }
+	    System.out.print(start);
+	    typegame=Keyboard.readInt();
 	}
+	/*
 	if (typegame==1){
-	    /* this part prob goes somewhere else
+	    //this part prob goes somewhere else
 	    System.out.print("How would thy like to be called: ");
 	    name=Keyboard.readString();
 	    System.out.print("Enter a PIN to access your account");
 	    pass=Keyboard.readString();
-	    */
+	    
 	    numRealPlayers=1;
 	    System.out.print("How many computers? (Max 4): "); //does not take into accunt when number is greater than 4
 	    numAi=Keyboard.readInt();
-	    numRealPlayers=1;
-	}
-	if (typegame==2){ 
+	    }*/
+	if (typegame==1){ 
 	    System.out.print("How many players?:"); //does not take into account if # of players >5
-	    numRealPlayers=Keyboard.readInt();
-	    System.out.print("How many computers?:");
-	    numAi=Keyboard.readInt();
+	    game.numRealPlayers=Keyboard.readInt();	    
 	}
-
-	allPlayers.add(new Player("hiya1"));
-	allPlayers.add(new Player("hiya"));
-	distribute();
-    }
-
-    //actual game methods go here
-    public void game() {
-	
-    
-    }
-    
-    public static void main(String[] args){
-	Woo game = new Woo();
+	String tempname;
+	int temppin;
+	for (int a = 1 ; a <= game.numRealPlayers; a++){
+	    System.out.println("Enter player"+ a+" name:");
+	    tempname=Keyboard.readString();
+	    game.names.add(tempname);
+	    System.out.println("Enter player"+ a+" pin (4-digits):");
+	    temppin=Keyboard.readInt();
+	    game.pins.add(temppin);
+	}
+       
+	    
 	game.beginGame();
+	System.out.println(game.allPlayers.get(0).currentCards);
+	//===========================================================
     
     }//end main
     
