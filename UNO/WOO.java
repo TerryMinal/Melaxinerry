@@ -1,3 +1,6 @@
+
+import java.util.*;
+
 public class WOO{
 
     int numAi;
@@ -21,7 +24,7 @@ public class WOO{
 
     //returns index of player that goes first;
     public Player rolldice(){
-        int first=Math.random()*(allPlayers.size()) //[0,size-1]
+        int first=Math.random()*(allPlayers.size()); //[0,size-1]
 	return first;
 	//rearranges allPlayer order list (eg. 01234 -->2-->23401)
 	for (int i=0; i<allPlayers.size()-first;i++){
@@ -36,8 +39,9 @@ public class WOO{
     }
     */
     public static void main(String[] args){
+	Deck one = new Deck();
         //prints an ArrayList of the whole deck
-	System.out.println(Deck.createDeck());
+	System.out.println(one);
 	
 	
     }//end main
