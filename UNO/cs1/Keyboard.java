@@ -1,4 +1,4 @@
-package cs1;
+package UNO.cs1;
 
 //********************************************************************
 //  Keyboard.java       Author: Lewis and Loftus

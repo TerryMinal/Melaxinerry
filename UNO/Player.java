@@ -1,3 +1,4 @@
+package UNO;
 import java.util.*;
 public class Player{
     protected String name;
@@ -11,16 +12,12 @@ public class Player{
 	this.pin = pin;
 	currentCards = new ArrayList<Card>();
     }//end constructor
-
-    public String toString(){
-	return this.name + this.pin;
-    }
     
     public void playCard(int index, ArrayList<Card> playedArea) {
 	playedArea.add(currentCards.remove(index)); 
     }
     //takes card from end of the array 
-    public void draw(Deck deck) {
+    public void draw(ArrayList<Card> deck) {
 	currentCards.add(deck.get(deck.size() - 1));
 	deck.remove(deck.size() - 1);
     }
@@ -45,5 +42,13 @@ public class Player{
     
     public void callUNO(){
     }
+
+    public ArrayList<Card> getCurrentCards() {
+	return currentCards;
+    }
     
+    public String toString(){
+	return this.name + this.score;
+    }
+
 }//end class

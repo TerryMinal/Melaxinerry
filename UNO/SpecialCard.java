@@ -1,3 +1,4 @@
+package UNO;
 public class SpecialCard extends Card { 
     private int action;
     //1: reverse, 2: skip, 3: draw2, 4: wild, 5: wild & draw4

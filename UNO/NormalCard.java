@@ -1,3 +1,4 @@
+package UNO;
 public class NormalCard extends Card {
     protected int num; //0-9
     

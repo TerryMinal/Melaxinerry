@@ -1,14 +1,13 @@
-
 import java.util.*;
-import cs1.Keyboard;
-
+import UNO.*;
+import UNO.cs1.Keyboard;
 public class Woo {
 
     int numAi;
     int numRealPlayers;
     ArrayList<Player> allPlayers;
     ArrayList<Card> discardPile;
-    Deck drawPile;
+    ArrayList<Card> drawPile;
     ArrayList<String> names; //all players' names
     ArrayList<Integer> pins; //all players' pins corresponding to the index of names
     //instantiate players and put them in arraylist  
@@ -17,9 +16,8 @@ public class Woo {
 	numRealPlayers = 0;	
 	allPlayers = new ArrayList<Player>();
 	discardPile = new ArrayList<Card>();
-	//drawPile = new ArrayList<Card>(108); 
-	drawPile = new Deck();
-	drawPile.shuffle();
+   	drawPile = Card.createDeck();
+	Card.shuffle(drawPile);
 	names = new ArrayList <String>();
 	pins  = new ArrayList <Integer>();
     }
@@ -33,7 +31,7 @@ public class Woo {
    }
 
     //returns index of player that goes first;
-    public void  rollDice(){
+    public void rollDice(){
        	for (int i=0; i < allPlayers.size(); i++){
 	    allPlayers.set(i, allPlayers.set( (int) (Math.random() * allPlayers.size()), allPlayers.get(i) ) ); 
 	}
@@ -41,31 +39,17 @@ public class Woo {
 
     public void playCards(Player pl, int index) {
 	if (drawPile.size() == 0) {
-	    drawPile.setDeck(discardPile);
-	    drawPile.shuffle();
+	    drawPile = discardPile;
+	    Card.shuffle(drawPile);
+	    discardPile = new ArrayList<Card>();
 	}
 	else {
 	    pl.playCard(index, discardPile);
 	}
     }
 
-    //create the number of player
     public void beginGame() {
-	for(int i = 0; i < numRealPlayers; i++){
-	    allPlayers.add(new Player(names.get(i),pins.get(i)));
-	}
-      	distribute();
-    }
-
-    //actual game methods go here
-    public void game() {
-	
-    
-    }
-    
-    public static void main(String[] args){
-	Woo game = new Woo();
-		//----STRINGS-----------
+	//----STRINGS-----------
 	String rules="How to Play:\n";
 	rules+="A game of UNO consists of 2-5 players. Each player starts with 7 cards \n";
 	rules+="A dice is rolled to see who goes first.\n";
@@ -107,22 +91,35 @@ public class Woo {
 	    }*/
 	if (typegame==1){ 
 	    System.out.print("How many players?:"); //does not take into account if # of players >5
-	    game.numRealPlayers=Keyboard.readInt();	    
+	    numRealPlayers=Keyboard.readInt();	    
 	}
 	String tempname;
 	int temppin;
-	for (int a = 1 ; a <= game.numRealPlayers; a++){
+	for (int a = 1 ; a <= numRealPlayers; a++){
 	    System.out.println("Enter player"+ a+" name:");
 	    tempname=Keyboard.readString();
-	    game.names.add(tempname);
+	    names.add(tempname);
 	    System.out.println("Enter player"+ a+" pin (4-digits):");
 	    temppin=Keyboard.readInt();
-	    game.pins.add(temppin);
+	    pins.add(temppin);
 	}
-       
-	    
+
+	for(int i = 0; i < numRealPlayers; i++){
+	    allPlayers.add(new Player(names.get(i),pins.get(i)));
+	}
+      	distribute();
+    }
+
+    //actual game methods go here
+    public void game() {
+	
+    
+    }
+    
+    public static void main(String[] args){
+	Woo game = new Woo();
 	game.beginGame();
-	System.out.println(game.allPlayers.get(0).currentCards);
+	System.out.println(game.allPlayers.get(0).getCurrentCards());
 	//===========================================================
     
     }//end main
