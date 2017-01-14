@@ -47,10 +47,11 @@ public class Card {
 	     deck.set(i, deck.set((int) (Math.random() * 108), deck.get(i)) ); 
 	 }
      }
-    
+
+    /* 
     public static void main(String[] args){
 	ArrayList<Card> test = Card.createDeck();
 	System.out.println(test);
     }//end main
-
+    */
 }

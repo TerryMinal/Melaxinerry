@@ -28,6 +28,8 @@ Deck.java needs to be removed because it's more of annoying than helpful
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 UNRESOLVED ISSUES:
+need to catch exceptions when player inputs an index greater than the size
+need to make the pin secure so no other people can see it/ recognize it
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 COOL STUFF LEARNED:
@@ -55,5 +57,5 @@ Terry Guan :: wrote method beginGame() in Woo.java to distribute, and add player
 --------------------------------------------------------------
 2017-01-13
 --------------------------------------------------------------
-Terry Guan :: removed Deck class and moved all necessary methods into Card class. Moved Woo.java into root directory and UNO a package.
+Terry Guan :: removed Deck class and moved all necessary methods into Card class. Rewrote Woo.java and Player.java to be functional without Deck.java.Moved Woo.java into root directory and UNO a package. Wrote part of playGame() in Woo.java to allow players to play cards. Wrote isCallUNO() in Player.
 --------------------------------------------------------------

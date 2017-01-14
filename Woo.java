@@ -30,7 +30,6 @@ public class Woo {
 	}
    }
 
-    //returns index of player that goes first;
     public void rollDice(){
        	for (int i=0; i < allPlayers.size(); i++){
 	    allPlayers.set(i, allPlayers.set( (int) (Math.random() * allPlayers.size()), allPlayers.get(i) ) ); 
@@ -103,7 +102,6 @@ public class Woo {
 	    temppin=Keyboard.readInt();
 	    pins.add(temppin);
 	}
-
 	for(int i = 0; i < numRealPlayers; i++){
 	    allPlayers.add(new Player(names.get(i),pins.get(i)));
 	}
@@ -111,17 +109,33 @@ public class Woo {
     }
 
     //actual game methods go here
-    public void game() {
-	
-    
+    public void playGame() {
+	boolean gameCont = true;
+	while (gameCont) {
+	    for (int turn = 0; turn < allPlayers.size(); turn++) {
+		Player currentPlayer = allPlayers.get(turn);
+		System.out.println(currentPlayer.getCurrentCards());
+		System.out.println("enter the card you want to play by entering the index:"); 
+		int cardIndex = Keyboard.readInt(); 
+		playCards(currentPlayer, cardIndex);
+		System.out.println("current hand: " + currentPlayer.getCurrentCards());
+		System.out.println("top most card played: " + discardPile.get(discardPile.size() - 1));
+		gameCont = !(currentPlayer.isCallUNO());
+		if (currentPlayer.isCallUNO()) { 
+		    System.out.println("UNO!");
+		    break;
+		}
+		else
+		    System.out.println("\nnext player's turn: ");
+	    }
+	}
     }
     
     public static void main(String[] args){
 	Woo game = new Woo();
 	game.beginGame();
-	System.out.println(game.allPlayers.get(0).getCurrentCards());
+	game.playGame();
 	//===========================================================
-    
     }//end main
     
 }//end class
