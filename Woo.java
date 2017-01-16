@@ -36,16 +36,18 @@ public class Woo {
 	}
     }
 
-    public void playCards(Player pl, int index) {
+    public boolean  playCards(Player pl, int index) { //returns T/F if worked.
+	//ADD RULES
+    }
+
+    public void draw(){
 	if (drawPile.size() == 0) {
 	    drawPile = discardPile;
 	    Card.shuffle(drawPile);
 	    discardPile = new ArrayList<Card>();
 	}
-	else {
-	    pl.playCard(index, discardPile);
-	}
-    }
+	CurrentCards.add(drawPile.remove(drawPile.size()-1));
+    }	
 
     public void beginGame() {
 	//----STRINGS-----------
@@ -111,18 +113,43 @@ public class Woo {
     //actual game methods go here
     public void playGame() {
 	boolean gameCont = true;
+	int move;
 	while (gameCont) {
 	    for (int turn = 0; turn < allPlayers.size(); turn++) {
+		move=0;
 		Player currentPlayer = allPlayers.get(turn);
+		while (move!=-1){ //turn goes not end when player calls UNO! //-1 = turn is over
 		System.out.println(currentPlayer.getCurrentCards());
-		System.out.println("enter the card you want to play by entering the index:"); 
-		int cardIndex = Keyboard.readInt(); 
-		playCards(currentPlayer, cardIndex);
-		System.out.println("current hand: " + currentPlayer.getCurrentCards());
-		System.out.println("top most card played: " + discardPile.get(discardPile.size() - 1));
-		gameCont = !(currentPlayer.isCallUNO());
-		if (currentPlayer.isCallUNO()) { 
-		    System.out.println("UNO!");
+		System.out.println("What would you like to do? \n 1. Play \n 2. Draw \n 3. Call UNO!(you may only call this at the start of your turn)");
+		move= Keyboard.readInt();
+		if (move==1){ //PLAY
+		    System.out.println("enter the card you want to play by entering the index:"); 
+		    int cardIndex = Keyboard.readInt(); 
+		    if (playCards(currentPlayer, cardIndex)){
+			System.out.println("current hand: " + currentPlayer.getCurrentCards());
+			System.out.println("top most card played: " + discardPile.get(discardPile.size() - 1));
+			move=-1
+		    }
+		    else{
+			System.out.println("invalid card play. 1. Try Again \n 2.Draw");
+			move=Keyboard.readInt();
+		    }	
+		}
+		if (move==2){ //DRAW
+		    currentPlayer.draw();
+		}
+		if (move==3){ //UNO 
+		    if (currentPlayer.CurrentCards.size()==1){
+			calledUNO=1; //IF 1 CARD-->CHECK OFF THEIR UNO STATUS!
+		    }
+		    else { //draw 2 cards
+			currentPlayer.draw();
+			currentPlayer.draw();
+		    }
+		}
+		}
+		if (currentPlayer.CurrentCards.size()==0) { 
+		    System.out.println("WINNER!");
 		    break;
 		}
 		else
