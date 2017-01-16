@@ -59,3 +59,6 @@ Terry Guan :: wrote method beginGame() in Woo.java to distribute, and add player
 --------------------------------------------------------------
 Terry Guan :: removed Deck class and moved all necessary methods into Card class. Rewrote Woo.java and Player.java to be functional without Deck.java.Moved Woo.java into root directory and UNO a package. Wrote part of playGame() in Woo.java to allow players to play cards. Wrote isCallUNO() in Player.
 --------------------------------------------------------------
+ 2017-01-16
+--------------------------------------------------------------
+Melanie Chow :: Created a framework of asking the player to either draw or play. Changed some methods and completed the draw method.  
