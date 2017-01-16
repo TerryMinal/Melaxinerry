@@ -42,12 +42,30 @@ public class Card {
     }
     
     //shuffles the deck
-     public static void shuffle(ArrayList<Card> deck) {
-	 for (int i = 0; i < deck.size(); i++) {
-	     deck.set(i, deck.set((int) (Math.random() * 108), deck.get(i)) ); 
-	 }
-     }
+    public static void shuffle(ArrayList<Card> deck) {
+	for (int i = 0; i < deck.size(); i++) {
+	    deck.set(i, deck.set((int) (Math.random() * 108), deck.get(i)) ); 
+	}
+    }
 
+    //if the two cards match in number, color, or action
+    public static boolean isMatch(Card lastCard, Card playCard){
+	if (lastCard.color == playCard.color){
+	    return true;
+	}
+	if (lastCard instanceof NormalCard && playCard instanceof NormalCard){
+	    if (((NormalCard)lastCard).getNum() == ((NormalCard)playCard).getNum()){
+		return true;
+	    }
+	}
+	if (lastCard instanceof SpecialCard && playCard instanceof SpecialCard){
+	    if (((SpecialCard)lastCard).getAction() == ((SpecialCard)playCard).getAction()){
+		return true;
+	    }
+	}
+	return false;
+    }
+    
     /* 
     public static void main(String[] args){
 	ArrayList<Card> test = Card.createDeck();

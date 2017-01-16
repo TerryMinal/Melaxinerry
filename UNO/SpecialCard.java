@@ -47,4 +47,9 @@ public class SpecialCard extends Card {
 	}
 	return retStr + name;
     }
+
+    public int getAction(){
+	return this.action;
+    }
+    
 }//end class

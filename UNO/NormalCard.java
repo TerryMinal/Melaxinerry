@@ -24,5 +24,8 @@ public class NormalCard extends Card {
 	}
 	return retStr + num;
     }//end toString
-    
+
+    public int getNum(){
+	return this.num;
+    }
 }//end class
