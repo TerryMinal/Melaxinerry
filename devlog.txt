@@ -62,3 +62,4 @@ Terry Guan :: removed Deck class and moved all necessary methods into Card class
  2017-01-16
 --------------------------------------------------------------
 Melanie Chow :: Created a framework of asking the player to either draw or play. Changed some methods and completed the draw method.  
+Xin Yi Chen :: Added firstCard() method. Edited playGame() so that players need to enter their pin before allowed to play. Added rules for playing cards(the cards must match in color, number or action).
