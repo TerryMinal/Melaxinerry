@@ -110,14 +110,13 @@ public class Woo {
 
 		System.out.println("Player "+ currentPlayer + "'s turn:");
 	        currentPlayer.checkPin();
-		System.out.println("============================================");
-		
+		System.out.println("============================================");		
 		System.out.println("Top most card played: " + discardPile.get(discardPile.size() - 1));	
 		System.out.println("Your current hand: " + currentPlayer.getCurrentCards());
 		System.out.println("What would you like to do? \n 1. Play \n 2. Draw \n");
+	
 		move= Keyboard.readInt();
 		
-
 		if (move==1){ //PLAY
 		    System.out.println("enter the card you want to play by entering the index:"); 
 		    int cardIndex = Keyboard.readInt();
@@ -132,12 +131,15 @@ public class Woo {
 		    currentPlayer.draw(drawPile);
 		    
 		    //if the card that is drawn can be played
-		    if (Card.isMatch(discardPile.get(discardPile.size()-1), ((currentPlayer.getCurrentCards()).get((currentPlayer.getCurrentCards()).size()-1)))){
+		    if (Card.isMatch( discardPile.get(discardPile.size()-1),
+				     (currentPlayer.getCurrentCards().get(currentPlayer.getCurrentCards().size()-1) ) 
+				      )) {
 			System.out.println("Current hand: " + currentPlayer.getCurrentCards());
 			System.out.println("Do you want to play the card that you just drawn? 1.YES 2.NO"); 
 			int choice = Keyboard.readInt();
 			if (choice == 1){
-			    int index = (currentPlayer.getCurrentCards()).size()-1;
+			    //add exception here
+			    int index = currentPlayer.getCurrentCards().size()-1;
 			    currentPlayer.playCard(index, discardPile);
 			}
 		    }
