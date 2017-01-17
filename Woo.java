@@ -129,7 +129,18 @@ public class Woo {
 		}
 		if (move==2){ //DRAW
 		    checkDiscardPile();
-		    currentPlayer.draw(drawPile);		    
+		    currentPlayer.draw(drawPile);
+		    
+		    //if the card that is drawn can be played
+		    if (Card.isMatch(discardPile.get(discardPile.size()-1), ((currentPlayer.getCurrentCards()).get((currentPlayer.getCurrentCards()).size()-1)))){
+			System.out.println("Current hand: " + currentPlayer.getCurrentCards());
+			System.out.println("Do you want to play the card that you just drawn? 1.YES 2.NO"); 
+			int choice = Keyboard.readInt();
+			if (choice == 1){
+			    int index = (currentPlayer.getCurrentCards()).size()-1;
+			    currentPlayer.playCard(index, discardPile);
+			}
+		    }
 		}
 		    
 		if (currentPlayer.isCallUNO()){ //check if only one card left
