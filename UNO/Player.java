@@ -16,7 +16,8 @@ public class Player{
     }//end constructor
     
     public boolean playCard(int index, ArrayList<Card> playedArea) {
-	if(Card.isMatch((playedArea.get(playedArea.size()-1)),currentCards.get(index))){	    	playedArea.add(currentCards.remove(index));
+	if( Card.isMatch( (playedArea.get(playedArea.size()-1)) ,currentCards.get(index) ) ) {	    
+	    playedArea.add(currentCards.remove(index));
 	    return true;
 	}
 	return false;	    
