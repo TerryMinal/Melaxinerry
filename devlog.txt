@@ -66,4 +66,7 @@ Xin Yi Chen :: Added firstCard() method. Edited playGame() so that players need 
 --------------------------------------------------------------
  2017-01-17
 --------------------------------------------------------------
-Xin Yi Chen :: modified rollDice() to choose the first player and then the turns goes clockwise
+Xin Yi Chen :: modified rollDice() to choose the first player and then the turns goes clockwise, overwrote gitignore file.
+Melanie Chow :: Wrote the ReadMe file.
+--------------------------------------------------------------
+2017-01-18

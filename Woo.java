@@ -127,7 +127,12 @@ public class Woo {
 		    System.out.println("enter the card you want to play by entering the index:"); 
 		    int cardIndex = Keyboard.readInt();
 		    while(! (currentPlayer.playCard(cardIndex, discardPile))){
-			System.out.println("WRONG CARD PLAYED! the card must match in color, number or action! Please re-enter an index:");
+			System.out.println("WRONG CARD PLAYED! the card must match in color, number or action! 1. Try again \n 2. Draw");
+			move=Keyboard.readInt();
+			if (move !=1){
+			    break;
+			}
+			System.out.println("Enter the card you want to play by entering the index:");
 			cardIndex = Keyboard.readInt();
 		    }
 		   
@@ -135,13 +140,13 @@ public class Woo {
 		if (move==2){ //DRAW
 		    checkDiscardPile();
 		    currentPlayer.draw(drawPile);
-		    
+		    System.out.println("You drew: "+currentPlayer.getCurrentCards().get(currentPlayer.getCurrentCards().size()-1));
 		    //if the card that is drawn can be played
 		    if (Card.isMatch( discardPile.get(discardPile.size()-1),
 				     (currentPlayer.getCurrentCards().get(currentPlayer.getCurrentCards().size()-1) ) 
 				      )) {
 			System.out.println("Current hand: " + currentPlayer.getCurrentCards());
-			System.out.println("Do you want to play the card that you just drawn? 1.YES 2.NO"); 
+			System.out.println("Do you want to play the card that you just drew? 1.YES 2.NO"); 
 			int choice = Keyboard.readInt();
 			if (choice == 1){
 			    //add exception here
