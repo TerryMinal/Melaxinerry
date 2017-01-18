@@ -137,15 +137,14 @@ public class Woo {
 		if (move==1){ //PLAY
 		    System.out.println("enter the card you want to play by entering the index:"); 
 		    int cardIndex = Keyboard.readInt();
-		    while(! (currentPlayer.playCard(cardIndex, discardPile))){
+		    while( !(currentPlayer.playCard(cardIndex, discardPile)) ){
 			System.out.println("WRONG CARD PLAYED! the card must match in color, number or action! Please re-enter an index:");
 			cardIndex = Keyboard.readInt();
 		    }
 
 		    Card thiscard = currentPlayer.getCurrentCards().get(cardIndex);
 		    //if the played card is a special card
-		    if (thiscard instanceof SpecialCard){
-		      
+		    if (thiscard instanceof SpecialCard) {
 			if (((SpecialCard)thiscard).getAction() == 1){ //if its a reverse
 			    reverse(turn);
 			    turn = 0; //resets the turn bc if you reverse the allPlayer ArrayList, it will begin with the currentPlayer
