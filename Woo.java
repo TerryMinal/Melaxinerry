@@ -138,7 +138,12 @@ public class Woo {
 		    System.out.println("enter the card you want to play by entering the index:"); 
 		    int cardIndex = Keyboard.readInt();
 		    while( !(currentPlayer.playCard(cardIndex, discardPile)) ){
-			System.out.println("WRONG CARD PLAYED! the card must match in color, number or action! Please re-enter an index:");
+		        System.out.println("WRONG CARD PLAYED! the card must match in color, number or action! 1. Try again \n 2. Draw");
+ 			move=Keyboard.readInt();
+ 			if (move !=1){
+ 			    break;
+ 			}
+ 			System.out.println("Enter the card you want to play by entering the index:");
 			cardIndex = Keyboard.readInt();
 		    }
 
