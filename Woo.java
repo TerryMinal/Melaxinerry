@@ -40,6 +40,18 @@ public class Woo {
 	}				
     }
 
+     public void reverse(int index){
+	ArrayList<Player> temp = new ArrayList<Player>();
+	temp.add(allPlayers.get(index));
+	for (int x = index - 1; x >= 0; x --){
+	    temp.add(allPlayers.get(x));
+	}
+	for (int i = allPlayers.size()-1; i > index; i --){
+	    temp.add(allPlayers.get(i));
+	}
+	allPlayers = temp;
+    }
+    
     public void checkDiscardPile(){
 	if (drawPile.size() == 0) {
 	    drawPile = discardPile;
@@ -122,21 +134,31 @@ public class Woo {
 		System.out.println("What would you like to do? \n 1. Play \n 2. Draw \n");
 	
 		move= Keyboard.readInt();
-		
 		if (move==1){ //PLAY
 		    System.out.println("enter the card you want to play by entering the index:"); 
 		    int cardIndex = Keyboard.readInt();
 		    while(! (currentPlayer.playCard(cardIndex, discardPile))){
-			System.out.println("WRONG CARD PLAYED! the card must match in color, number or action! 1. Try again \n 2. Draw");
-			move=Keyboard.readInt();
-			if (move !=1){
-			    break;
-			}
-			System.out.println("Enter the card you want to play by entering the index:");
+			System.out.println("WRONG CARD PLAYED! the card must match in color, number or action! Please re-enter an index:");
 			cardIndex = Keyboard.readInt();
+		    }
+
+		    Card thiscard = currentPlayer.getCurrentCards().get(cardIndex);
+		    //if the played card is a special card
+		    if (thiscard instanceof SpecialCard){
+		      
+			if (((SpecialCard)thiscard).getAction() == 1){ //if its a reverse
+			    reverse(turn);
+			    turn = 0; //resets the turn bc if you reverse the allPlayer ArrayList, it will begin with the currentPlayer
+			}
+			if (((SpecialCard)thiscard).getAction() == 2){ //if its a skip
+			    turn ++;
+			}
+			if (((SpecialCard)thiscard).getAction() == 3){ //if its a draw 2
+			}
 		    }
 		   
 		}
+	
 		if (move==2){ //DRAW
 		    checkDiscardPile();
 		    currentPlayer.draw(drawPile);
