@@ -60,6 +60,12 @@ public class Woo {
 	}
     }	
 
+    public String draw(Player currentPlayer){
+	checkDiscardPile();
+	currentPlayer.draw(drawPile);
+	return "You drew: "+currentPlayer.getCurrentCards().get(currentPlayer.getCurrentCards().size()-1);
+    }
+	
     public void firstCard(){
 	System.out.println("The first card is: " + drawPile.get(drawPile.size() - 1));
 	discardPile.add(drawPile.remove(drawPile.size() - 1));
@@ -131,14 +137,14 @@ public class Woo {
 		System.out.println("============================================");		
 		System.out.println("Top most card played: " + discardPile.get(discardPile.size() - 1));	
 		System.out.println("Your current hand: " + currentPlayer.getCurrentCards());
-		System.out.println("What would you like to do? \n 1. Play \n 2. Draw \n");
+		System.out.println("What would you like to do? \n 1. Play \n 2. Draw \n 3. Call UNO");
 	
 		move= Keyboard.readInt();
 		if (move==1){ //PLAY
 		    System.out.println("enter the card you want to play by entering the index:"); 
 		    int cardIndex = Keyboard.readInt();
 		    while( !(currentPlayer.playCard(cardIndex, discardPile)) ){
-		        System.out.println("WRONG CARD PLAYED! the card must match in color, number or action! 1. Try again \n 2. Draw");
+		        System.out.println("WRONG CARD PLAYED! the card must match in color, number or action! \n 1. Try again \n 2. Draw");
  			move=Keyboard.readInt();
  			if (move !=1){
  			    break;
@@ -164,9 +170,7 @@ public class Woo {
 		}
 	
 		if (move==2){ //DRAW
-		    checkDiscardPile();
-		    currentPlayer.draw(drawPile);
-		    System.out.println("You drew: "+currentPlayer.getCurrentCards().get(currentPlayer.getCurrentCards().size()-1));
+		    System.out.println(draw(currentPlayer));
 		    //if the card that is drawn can be played
 		    if (Card.isMatch( discardPile.get(discardPile.size()-1),
 				     (currentPlayer.getCurrentCards().get(currentPlayer.getCurrentCards().size()-1) ) 
@@ -181,13 +185,25 @@ public class Woo {
 			}
 		    }
 		}
-		    
-		if (currentPlayer.isCallUNO()){ //check if only one card left
-		    System.out.println("You have only one card left...");
-		    currentPlayer.UNOMiniGame();
+		if (move==3){ //UNO 
+		    if (currentPlayer.getCurrentCards().size()==1){ //add instance variable to player
+		        currentPlayer.calledUNO=1; //IF 1 CARD-->CHECK OFF THEIR UNO STATUS!
+		    }
+		    else { //IF YOU DON'T HAVE UNO-->DRAW 2 CARDS
+			System.out.println("\nEek! You don't have UNO! Draw 2 Cards. \n");
+			System.out.println(draw(currentPlayer));
+			System.out.println(draw(currentPlayer));
+		    }
 		}
-		    
-		if (currentPlayer.win()) { 
+		if (currentPlayer.getCurrentCards().size()==1){
+		    if (currentPlayer.calledUNO!=1){ //they didn't call UNO --> draw 2
+			System.out.println("\nSo close...yet so far. Remember to call UNO next time. Draw 2 \n");
+			System.out.println(draw(currentPlayer));		
+			System.out.println(draw(currentPlayer));
+		    }
+		}
+			
+		if (currentPlayer.getCurrentCards().size()==0) { 
 		    System.out.println("WINNER!");
 		    break;
 		}

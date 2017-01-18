@@ -7,6 +7,7 @@ public class Player{
     protected int score;
     protected int pin; //4-digit
     protected ArrayList <Card> currentCards;
+    public int calledUNO=0;
     
     public Player(String name, int pin){
 	this.name = name;
