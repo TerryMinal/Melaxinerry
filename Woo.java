@@ -30,10 +30,14 @@ public class Woo {
 	}
    }
 
-    public void rollDice(){
-       	for (int i=0; i < allPlayers.size(); i++){
-	    allPlayers.set(i, allPlayers.set( (int) (Math.random() * allPlayers.size()), allPlayers.get(i) ) ); 
-	}
+    public void rollDice(){	
+	int first= (int)(Math.random()*(allPlayers.size()));
+	//System.out.println(first);
+	for(int i = 0; i < first; i++){
+	    allPlayers.add(allPlayers.get(0));
+	    //System.out.println(a);
+	    allPlayers.remove(0);
+	}				
     }
 
     public void checkDiscardPile(){
@@ -95,6 +99,8 @@ public class Woo {
 	for(int i = 0; i < numRealPlayers; i++){
 	    allPlayers.add(new Player(names.get(i),pins.get(i)));
 	}
+	rollDice();
+	System.out.println(allPlayers);
       	distribute();
     } 
 
