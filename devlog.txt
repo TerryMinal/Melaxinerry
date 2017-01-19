@@ -30,6 +30,7 @@ Deck.java needs to be removed because it's more of annoying than helpful
 UNRESOLVED ISSUES:
 need to catch exceptions when player inputs an index greater than the size
 need to make the pin secure so no other people can see it/ recognize it
+need to display message if someone called UNO, played a skip, or played a reverse
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 COOL STUFF LEARNED:
@@ -59,14 +60,17 @@ Terry Guan :: wrote method beginGame() in Woo.java to distribute, and add player
 --------------------------------------------------------------
 Terry Guan :: removed Deck class and moved all necessary methods into Card class. Rewrote Woo.java and Player.java to be functional without Deck.java.Moved Woo.java into root directory and UNO a package. Wrote part of playGame() in Woo.java to allow players to play cards. Wrote isCallUNO() in Player.
 --------------------------------------------------------------
- 2017-01-16
+2017-01-16
 --------------------------------------------------------------
 Melanie Chow :: Created a framework of asking the player to either draw or play. Changed some methods and completed the draw method.  
 Xin Yi Chen :: Added firstCard() method. Edited playGame() so that players need to enter their pin before allowed to play. Added rules for playing cards(the cards must match in color, number or action). Added option to play after draw.
 --------------------------------------------------------------
- 2017-01-17
+2017-01-17
 --------------------------------------------------------------
 Xin Yi Chen :: modified rollDice() to choose the first player and then the turns goes clockwise, overwrote gitignore file.
 Melanie Chow :: Wrote the ReadMe file, made draw function more user friendly, added the option to draw after invalid card play in case player has no cards to play
 --------------------------------------------------------------
 2017-01-18
+--------------------------------------------------------------
+Xin Yi Chen :: added rules for reverse and skip cards 
+--------------------------------------------------------------
