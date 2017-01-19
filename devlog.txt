@@ -31,6 +31,8 @@ UNRESOLVED ISSUES:
 need to catch exceptions when player inputs an index greater than the size
 need to make the pin secure so no other people can see it/ recognize it
 need to display message if someone called UNO, played a skip, or played a reverse
+reverse act as a skip when theres only two players
+the first card cannot be a special card
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 COOL STUFF LEARNED:
@@ -72,5 +74,5 @@ Melanie Chow :: Wrote the ReadMe file, made draw function more user friendly, ad
 --------------------------------------------------------------
 2017-01-18
 --------------------------------------------------------------
-Xin Yi Chen :: added rules for reverse and skip cards 
+Xin Yi Chen :: added rules for reverse, skip cards, draw2 cards, and wild cards 
 --------------------------------------------------------------
