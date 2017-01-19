@@ -50,14 +50,33 @@ public class Card {
 
     //if the two cards match in number, color, or action
     public static boolean isMatch(Card lastCard, Card playCard){
+	//match in color
 	if (lastCard.color == playCard.color){
 	    return true;
 	}
+	
+	//if the lastCard is a wild or wild draw 4 card
+	if (lastCard instanceof SpecialCard){
+	    if (((SpecialCard)lastCard).getAction() == 4 || ((SpecialCard)lastCard).getAction() == 5){
+		return true;
+	    }
+	}
+
+	//if the playCard is a wild or wild draw 4 card
+	if (playCard instanceof SpecialCard){
+	    if (((SpecialCard)playCard).getAction() == 4 || ((SpecialCard)playCard).getAction() == 5){
+		return true;
+	    }
+	}
+
+	//match in number
 	if (lastCard instanceof NormalCard && playCard instanceof NormalCard){
 	    if (((NormalCard)lastCard).getNum() == ((NormalCard)playCard).getNum()){
 		return true;
 	    }
 	}
+
+	//match in action
 	if (lastCard instanceof SpecialCard && playCard instanceof SpecialCard){
 	    if (((SpecialCard)lastCard).getAction() == ((SpecialCard)playCard).getAction()){
 		return true;

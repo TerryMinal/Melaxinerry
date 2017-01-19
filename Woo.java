@@ -130,18 +130,38 @@ public class Woo {
 	int move = 0;
 	while (gameCont) {
 	    for (int turn = 0; turn < allPlayers.size(); turn++) {
-
-		//if the last card played was a skip
+		
+		//if the last player played a skip
 		if (move == 1){
-		      Card lastCard = discardPile.get(discardPile.size()-1);
-		      if( lastCard instanceof SpecialCard && (((SpecialCard)lastCard).getAction() == 2)){ 
+		    Card lastCard = discardPile.get(discardPile.size()-1);
+		    if( lastCard instanceof SpecialCard && (((SpecialCard)lastCard).getAction() == 2)){ 
 			    turn ++;
-			}
-	       
+		    }
 		}
 				
 		Player currentPlayer = allPlayers.get(turn);
 
+		//if the last player played a draw2 
+		if (move == 1){
+		    Card lastCard = discardPile.get(discardPile.size()-1);
+		    if( lastCard instanceof SpecialCard &&( ( (SpecialCard)lastCard).getAction() == 3 )){ 
+			draw(currentPlayer);
+			draw(currentPlayer);
+		    }
+		}
+
+		//if the second to last card was a wild draw 4 (played by last player)	
+		if (move == 1){
+		    Card secondToLastCard = discardPile.get(discardPile.size()-2);
+		    if( secondToLastCard instanceof SpecialCard && ( ( (SpecialCard)secondToLastCard).getAction() == 5 ) ){ 
+			draw(currentPlayer);
+			draw(currentPlayer);
+			draw(currentPlayer);
+			draw(currentPlayer);
+		    }
+		}
+	    
+		
 		System.out.println("Player "+ currentPlayer + "'s turn:");
 	        currentPlayer.checkPin();
 		System.out.println("============================================");		
@@ -164,18 +184,22 @@ public class Woo {
 			cardIndex = Keyboard.readInt();
 		    }
 
-		    //if the card played is a reverse or draw2
+		    
 		    Card thisCard = discardPile.get(discardPile.size()-1);
 		    if( thisCard instanceof SpecialCard){
-			if (((SpecialCard)thisCard).getAction() == 1){ //if its a reverse
+			//if the card played is a reverse
+			if (((SpecialCard)thisCard).getAction() == 1){ 
 			    reverse(turn);
 			    turn = 0; //resets the turn bc if you reverse the allPlayer ArrayList, it will begin with the currentPlayer
 			}
-		
-			if (((SpecialCard)thisCard).getAction() == 3){ //if its a draw 2
+			
+			//if the currentPlayer played a wild card, he/she must play another card
+			if (((SpecialCard)thisCard).getAction() == 4 || ((SpecialCard)thisCard).getAction() == 5){ 
+			    System.out.println("You just played a wild or wild draw 4 card! \n Enter the card you want to play by entering the index:");
+			    cardIndex = Keyboard.readInt();
+			    currentPlayer.playCard(cardIndex, discardPile);
 			}
 		    }
-		   
 		}
 	
 		if (move==2){ //DRAW
