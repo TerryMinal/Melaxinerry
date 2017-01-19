@@ -50,6 +50,7 @@ public class Woo {
 	    temp.add(allPlayers.get(i));
 	}
 	allPlayers = temp;
+	System.out.println(allPlayers);
     }
     
     public void checkDiscardPile(){
@@ -129,7 +130,16 @@ public class Woo {
 	int move = 0;
 	while (gameCont) {
 	    for (int turn = 0; turn < allPlayers.size(); turn++) {
-       
+
+		//if the last card played was a skip
+		if (move == 1){
+		      Card lastCard = discardPile.get(discardPile.size()-1);
+		      if( lastCard instanceof SpecialCard && (((SpecialCard)lastCard).getAction() == 2)){ 
+			    turn ++;
+			}
+	       
+		}
+				
 		Player currentPlayer = allPlayers.get(turn);
 
 		System.out.println("Player "+ currentPlayer + "'s turn:");
@@ -143,6 +153,7 @@ public class Woo {
 		if (move==1){ //PLAY
 		    System.out.println("enter the card you want to play by entering the index:"); 
 		    int cardIndex = Keyboard.readInt();
+	
 		    while( !(currentPlayer.playCard(cardIndex, discardPile)) ){
 		        System.out.println("WRONG CARD PLAYED! the card must match in color, number or action! \n 1. Try again \n 2. Draw");
  			move=Keyboard.readInt();
@@ -153,17 +164,15 @@ public class Woo {
 			cardIndex = Keyboard.readInt();
 		    }
 
-		    Card thiscard = currentPlayer.getCurrentCards().get(cardIndex);
-		    //if the played card is a special card
-		    if (thiscard instanceof SpecialCard) {
-			if (((SpecialCard)thiscard).getAction() == 1){ //if its a reverse
+		    //if the card played is a reverse or draw2
+		    Card thisCard = discardPile.get(discardPile.size()-1);
+		    if( thisCard instanceof SpecialCard){
+			if (((SpecialCard)thisCard).getAction() == 1){ //if its a reverse
 			    reverse(turn);
 			    turn = 0; //resets the turn bc if you reverse the allPlayer ArrayList, it will begin with the currentPlayer
 			}
-			if (((SpecialCard)thiscard).getAction() == 2){ //if its a skip
-			    turn ++;
-			}
-			if (((SpecialCard)thiscard).getAction() == 3){ //if its a draw 2
+		
+			if (((SpecialCard)thisCard).getAction() == 3){ //if its a draw 2
 			}
 		    }
 		   
