@@ -76,3 +76,7 @@ Melanie Chow :: Wrote the ReadMe file, made draw function more user friendly, ad
 --------------------------------------------------------------
 Xin Yi Chen :: added rules for reverse, skip cards, draw2 cards, and wild cards 
 --------------------------------------------------------------
+2017-01-19
+--------------------------------------------------------------
+Xin Yi Chen :: added rules for special cards for the option: play after draw
+--------------------------------------------------------------
