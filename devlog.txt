@@ -15,7 +15,6 @@ need to catch exceptions when player inputs an index greater than the size
 need to make the pin secure so no other people can see it/ recognize it
 need to display message if someone called UNO, played a skip, or played a reverse
 reverse act as a skip when theres only two players
-the first card cannot be a special card
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 COOL STUFF LEARNED:
@@ -61,5 +60,5 @@ Xin Yi Chen :: added rules for reverse, skip cards, draw2 cards, and wild cards
 --------------------------------------------------------------
 2017-01-19
 --------------------------------------------------------------
-Xin Yi Chen :: added rules for special cards for the option: play after draw
+Xin Yi Chen :: added rules for special cards for the option: play after draw. Also edited method shuffle() so the first card of the game will never be a special card.
 --------------------------------------------------------------
