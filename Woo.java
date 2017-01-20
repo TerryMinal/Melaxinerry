@@ -2,7 +2,7 @@ import java.util.*;
 import UNO.*;
 import UNO.cs1.Keyboard;
 public class Woo {
-
+	
     int numAi;
     int numRealPlayers;
     ArrayList<Player> allPlayers;
@@ -68,8 +68,17 @@ public class Woo {
     }
 	
     public void firstCard(){
+	//if the last card (which becomes the first card) is a specialCard -> re-shuffle
+	while (drawPile.get(drawPile.size() - 1) instanceof SpecialCard){
+	    Card.shuffle(drawPile);
+	}
 	System.out.println("The first card is: " + drawPile.get(drawPile.size() - 1));
 	discardPile.add(drawPile.remove(drawPile.size() - 1));
+    }
+    
+    public static void clearScreen() {  
+	System.out.print("\033[H\033[2J");  
+	System.out.flush();  
     }
     
     public void beginGame() {
@@ -130,7 +139,6 @@ public class Woo {
 	int move = 0;
 	while (gameCont) {
 	    for (int turn = 0; turn < allPlayers.size(); turn++) {
-		
 		//if the last player played a skip
 		if (move == 1){
 		    Card lastCard = discardPile.get(discardPile.size()-1);
@@ -261,7 +269,13 @@ public class Woo {
 		System.out.println("Current hand: " + currentPlayer.getCurrentCards());
 		System.out.println("Top most card played: " + discardPile.get(discardPile.size() - 1));	
 		System.out.println("============================================");
-	        System.out.println("\nNext player's turn: ");
+	        System.out.println("\nNext player's turn: Please enter 1");
+		int next = Keyboard.readInt();
+		while (next != 1){
+		    System.out.println("Please enter 1:");
+		    next = Keyboard.readInt();
+		}
+		clearScreen();
 		
 	    }
 	}
