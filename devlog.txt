@@ -12,13 +12,14 @@ Deck.java needs to be removed because it's more of annoying than helpful
 
 UNRESOLVED ISSUES:
 need to catch exceptions when player inputs an index greater than the size
-need to make the pin secure so no other people can see it/ recognize it
+need to make the pin secure so no other people can see it/ recognize it -> command line input masking??
 need to display message if someone called UNO, played a skip, or played a reverse
 reverse act as a skip when theres only two players
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 COOL STUFF LEARNED:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ANSI escape code for clearing the terminal screen
 
 MID-DEVELOPMENT DESIGN CHANGES: 
 Deck.java needs to be removed because it's more of annoying than helpful
