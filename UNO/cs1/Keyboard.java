@@ -247,12 +247,12 @@ public class Keyboard
       int value;
       try 
       {
-         value = Integer.parseInt (token);
+	  value = Integer.parseInt (token);
       } 
       catch (Exception exception) 
       {
-         error ("Error reading int data, MIN_VALUE value returned.");
-         value = Integer.MIN_VALUE;
+         error ("Error reading int data, first card played.");
+         value = 0;
       }
       return value;
    }
