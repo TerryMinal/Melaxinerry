@@ -129,12 +129,13 @@ public class Woo {
 	}
 	rollDice();
 	System.out.println(allPlayers);
-      	distribute();
+      
     } 
 
     
     //actual game methods go here
     public void playGame() {
+	distribute();
 	boolean gameCont = true;
 	int move = 0;
 	while (gameCont) {
