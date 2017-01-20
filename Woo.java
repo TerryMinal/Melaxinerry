@@ -176,7 +176,7 @@ public class Woo {
 		System.out.println("============================================");		
 		System.out.println("Top most card played: " + discardPile.get(discardPile.size() - 1));	
 		System.out.println("Your current hand: " + currentPlayer.getCurrentCards());
-		System.out.println("What would you like to do? \n 1. Play \n 2. Draw \n 3. Call UNO");
+		System.out.println("What would you like to do? \n 1. Play \n 2. Draw \n");
 	
 		move= Keyboard.readInt();
 		if (move==1){ //PLAY
@@ -209,8 +209,29 @@ public class Woo {
 			    currentPlayer.playCard(cardIndex, discardPile);
 			}
 		    }
+		
+
+		    System.out.println("Call UNO! \n1.Yes \n2.No");
+		    if (Keyboard.readInt()==1){
+			if (currentPlayer.getCurrentCards().size()==1){ //add instance variable to player
+			    currentPlayer.calledUNO=1; //IF 1 CARD-->CHECK OFF THEIR UNO STATUS!
+			}
+			else { //IF YOU DON'T HAVE UNO-->DRAW 2 CARDS
+			    System.out.println("\nEek! You don't have UNO! Draw 2 Cards. \n");
+			    System.out.println(draw(currentPlayer));
+			    System.out.println(draw(currentPlayer));
+			}
+		    }
+		    if (currentPlayer.getCurrentCards().size()==1){
+			if (currentPlayer.calledUNO!=1){ //they didn't call UNO --> draw 2
+			    System.out.println("\nSo close...yet so far. Remember to call UNO next time. Draw 2 \n");
+			    System.out.println(draw(currentPlayer));		
+			    System.out.println(draw(currentPlayer)+"\n");
+			}
+		    }
 		}
-	
+			
+			
 		if (move==2){ //DRAW
 		    System.out.println(draw(currentPlayer));
 		    //if the card that is drawn can be played
@@ -244,23 +265,6 @@ public class Woo {
 			}
 		    }
 		}
-		if (move==3){ //UNO 
-		    if (currentPlayer.getCurrentCards().size()==1){ //add instance variable to player
-		        currentPlayer.calledUNO=1; //IF 1 CARD-->CHECK OFF THEIR UNO STATUS!
-		    }
-		    else { //IF YOU DON'T HAVE UNO-->DRAW 2 CARDS
-			System.out.println("\nEek! You don't have UNO! Draw 2 Cards. \n");
-			System.out.println(draw(currentPlayer));
-			System.out.println(draw(currentPlayer));
-		    }
-		}
-		if (currentPlayer.getCurrentCards().size()==1){
-		    if (currentPlayer.calledUNO!=1){ //they didn't call UNO --> draw 2
-			System.out.println("\nSo close...yet so far. Remember to call UNO next time. Draw 2 \n");
-			System.out.println(draw(currentPlayer));		
-			System.out.println(draw(currentPlayer));
-		    }
-		}
 			
 		if (currentPlayer.getCurrentCards().size()==0) { 
 		    System.out.println("WINNER!");
@@ -270,10 +274,10 @@ public class Woo {
 		System.out.println("Current hand: " + currentPlayer.getCurrentCards());
 		System.out.println("Top most card played: " + discardPile.get(discardPile.size() - 1));	
 		System.out.println("============================================");
-	        System.out.println("\nNext player's turn: Please enter 1");
+	        System.out.println("\nEnd Turn? \n 1.Yes");
 		int next = Keyboard.readInt();
 		while (next != 1){
-		    System.out.println("Please enter 1:");
+		    System.out.println("Your turn is over. End Turn? \n 1.Yes");
 		    next = Keyboard.readInt();
 		}
 		clearScreen();
