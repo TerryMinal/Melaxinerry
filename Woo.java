@@ -268,7 +268,7 @@ public class Woo {
     }
     
     public static void main(String[] args){
-	Woo game = new Woo();
+      	Woo game = new Woo();
 	game.beginGame();
 	System.out.println("============================================");
 	game.firstCard();

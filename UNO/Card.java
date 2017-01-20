@@ -46,8 +46,14 @@ public class Card {
 	for (int i = 0; i < deck.size(); i++) {
 	    deck.set(i, deck.set((int) (Math.random() * 108), deck.get(i)) ); 
 	}
+	//if the last card (which becomes the first card) is a specialCard -> re-shuffle
+	while (deck.get(deck.size()-1) instanceof SpecialCard){
+	    for (int x = 0; x < deck.size(); x++) {
+		deck.set(x, deck.set((int) (Math.random() * 108), deck.get(x)) ); 
+	    }
+	}
     }
-
+    
     //if the two cards match in number, color, or action
     public static boolean isMatch(Card lastCard, Card playCard){
 	//match in color
