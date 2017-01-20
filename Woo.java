@@ -213,8 +213,25 @@ public class Woo {
 			int choice = Keyboard.readInt();
 			if (choice == 1){
 			    //add exception here
+			    move = 1;  
 			    int index = currentPlayer.getCurrentCards().size()-1;
 			    currentPlayer.playCard(index, discardPile);
+			    
+			    Card thisCard = discardPile.get(discardPile.size()-1);
+			    if( thisCard instanceof SpecialCard){
+				//if the card played is a reverse
+				if (((SpecialCard)thisCard).getAction() == 1){ 
+				    reverse(turn);
+				    turn = 0; //resets the turn bc if you reverse the allPlayer ArrayList, it will begin with the currentPlayer
+				}
+			
+				//if the currentPlayer played a wild card, he/she must play another card
+				if (((SpecialCard)thisCard).getAction() == 4 || ((SpecialCard)thisCard).getAction() == 5){ 
+				    System.out.println("You just played a wild or wild draw 4 card! \n Enter the card you want to play by entering the index:");
+				    int cardIndex = Keyboard.readInt();
+				    currentPlayer.playCard(cardIndex, discardPile);
+				}
+			    }
 			}
 		    }
 		}
