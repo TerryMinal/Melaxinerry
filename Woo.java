@@ -68,13 +68,35 @@ public class Woo {
  	}
  	return retStr;
     }
-    
+
     public String draw(Player currentPlayer){
 	checkDiscardPile();
 	currentPlayer.draw(drawPile);
 	return "You drew: "+currentPlayer.getCurrentCards().get(currentPlayer.getCurrentCards().size()-1);
     }
+    public static void sort(Player currentPlayer) {
+	    System.out.println("How would you like to sort it by: \n1:Color \n2:Number \n");
+	    int whichSort = Keyboard.readInt();
+	    while (whichSort < 1 || whichSort > 2) {
+		System.out.println("please input an acceptable number");
+		whichSort = Keyboard.readInt();
+	    }
+	    currentPlayer.sortCards(whichSort); 
 	
+
+	System.out.println("would you like to sort again: \n1:Yes \n2:No");
+	int more = Keyboard.readInt();
+	if (more < 1 || more > 2) {
+	    System.out.println("please enter an acceptable number");
+	    more = Keyboard.readInt();
+	}
+
+	//recursive statements
+	if (more == 1)
+	    sort(currentPlayer);
+	else
+	    return; 
+    }
     public void firstCard(){
 	//if the last card (which becomes the first card) is a specialCard -> re-shuffle
 	while (drawPile.get(drawPile.size() - 1) instanceof SpecialCard){
@@ -176,10 +198,9 @@ public class Woo {
 		if (move == 1){
 		    Card secondToLastCard = discardPile.get(discardPile.size()-2);
 		    if( secondToLastCard instanceof SpecialCard && ( ( (SpecialCard)secondToLastCard).getAction() == 5 ) ){ 
-			draw(currentPlayer);
-			draw(currentPlayer);
-			draw(currentPlayer);
-			draw(currentPlayer);
+			for (int i = 0; i < 4; i++) {
+			    draw(currentPlayer);
+			}
 		    }
 		}
 	    
@@ -190,9 +211,19 @@ public class Woo {
 		System.out.println("Top most card played: " + discardPile.get(discardPile.size() - 1));	
 		System.out.println("Your current hand: " + currentPlayer.getCurrentCards());
 		System.out.println("What would you like to do? \n 1. Play \n 2. Draw \n");
-	
 		move= Keyboard.readInt();
 		if (move==1){ //PLAY
+		    System.out.println("Your current hand: " + currentPlayer.getCurrentCards());
+		    System.out.println("Would you like to sort: \n1:Yes \n2:No");
+		    int sortQ = Keyboard.readInt();
+		    while (sortQ < 1 || sortQ > 2) {
+			System.out.println("please input an acceptable number");
+			sortQ = Keyboard.readInt();
+		    }
+		    if (sortQ == 1) {
+
+			sort(currentPlayer);
+		    }
 		    System.out.println("enter the card you want to play by entering the index:"); 
 		    int cardIndex = Keyboard.readInt();
 		    //checks if the index would return an error
@@ -201,15 +232,15 @@ public class Woo {
 			cardIndex = Keyboard.readInt();
 		    }
 		    while( !(currentPlayer.playCard(cardIndex, discardPile)) ){
-		        System.out.println("WRONG CARD PLAYED! the card must match in color, number or action! \n 1. Try again \n 2. Draw");
- 			move=Keyboard.readInt();
- 			if (move !=1){
- 			    break;
- 			}
- 			System.out.println("Enter the card you want to play by entering the index:");
+			System.out.println("WRONG CARD PLAYED! the card must match in color, number or action! \n 1. Try again \n 2. Draw");
+			move=Keyboard.readInt();
+			if (move !=1){
+			    break;
+			}
+			System.out.println("Enter the card you want to play by entering the index:");
 			cardIndex = Keyboard.readInt();
 		    }
-
+		    
 		    
 		    Card thisCard = discardPile.get(discardPile.size()-1);
 		    if( thisCard instanceof SpecialCard){
@@ -227,33 +258,33 @@ public class Woo {
 			}
 		    }
 		
-
-		    System.out.println("Call UNO! \n1.Yes \n2.No");
-		    if (Keyboard.readInt()==1){
-			if (currentPlayer.getCurrentCards().size()==1){ //add instance variable to player
-			    currentPlayer.calledUNO=1; //IF 1 CARD-->CHECK OFF THEIR UNO STATUS!
+		    if (currentPlayer.isCallUNO()) {
+			System.out.println("Call UNO! \n1.Yes \n2.No");
+			if (Keyboard.readInt()==1){
+			    if (currentPlayer.getCurrentCards().size()==1){ //add instance variable to player
+				currentPlayer.calledUNO=1; //IF 1 CARD-->CHECK OFF THEIR UNO STATUS!
+			    }
+			    else { //IF YOU DON'T HAVE UNO-->DRAW 2 CARDS
+				System.out.println("\nEek! You don't have UNO! Draw 2 Cards. \n");
+				System.out.println(draw(currentPlayer));
+				System.out.println(draw(currentPlayer));
+			    }
 			}
-			else { //IF YOU DON'T HAVE UNO-->DRAW 2 CARDS
-			    System.out.println("\nEek! You don't have UNO! Draw 2 Cards. \n");
-			    System.out.println(draw(currentPlayer));
-			    System.out.println(draw(currentPlayer));
-			}
-		    }
-		    if (currentPlayer.getCurrentCards().size()==1){
-			if (currentPlayer.calledUNO!=1){ //they didn't call UNO --> draw 2
-			    System.out.println("\nSo close...yet so far. Remember to call UNO next time. Draw 2 \n");
-			    System.out.println(draw(currentPlayer));		
-			    System.out.println(draw(currentPlayer)+"\n");
+			if (currentPlayer.getCurrentCards().size()==1){
+			    if (currentPlayer.calledUNO!=1){ //they didn't call UNO --> draw 2
+				System.out.println("\nSo close...yet so far. Remember to call UNO next time. Draw 2 \n");
+				System.out.println(draw(currentPlayer));		
+				System.out.println(draw(currentPlayer)+"\n");
+			    }
 			}
 		    }
 		}
-			
-			
+    		
 		if (move==2){ //DRAW
 		    System.out.println(draw(currentPlayer));
 		    //if the card that is drawn can be played
 		    if (Card.isMatch( discardPile.get(discardPile.size()-1),
-				     (currentPlayer.getCurrentCards().get(currentPlayer.getCurrentCards().size()-1) ) 
+				      (currentPlayer.getCurrentCards().get(currentPlayer.getCurrentCards().size()-1) ) 
 				      )) {
 			System.out.println("Current hand: " + currentPlayer.getCurrentCards());
 			System.out.println("Do you want to play the card that you just drew? 1.YES 2.NO");

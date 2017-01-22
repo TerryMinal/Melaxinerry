@@ -56,18 +56,43 @@ public class Player{
 	}
     }
     
-    void sortCards(int whichSort) {
+    public void sortCards(int whichSort) {
+	if (whichSort == 1)
+	    sortCardsColor();
     }
 
-    void sortCardsColor() {
+    public void sortCardsColor() {
+	// 1: red, 2: blue, 3: yellow, 4: green
+	System.out.println("Which color: \n1:red \n2:blue \n3:yellow \n4:green \n5:wild");
+	int color = Keyboard.readInt();
+	while (color < 1 || color > 6) {
+	    System.out.println("wrong input. Please input an acceptable number");
+	    color = Keyboard.readInt();
+	}
+	int lastSortedCard = 0; 
+	//selection sort
+	for (int i = 0; i < currentCards.size()-1; i++) {
+	    Card current = currentCards.get(i);
+	    if(current.getColor() == color) {
+		i++;
+		lastSortedCard++; 
+	    }
+	    for (int n = i + 1;  n < currentCards.size(); n++) {
+		if (currentCards.get(n).getColor() == color) {
+		    currentCards.set(i, currentCards.set(n, current));
+		    lastSortedCard++;
+		    break;
+		}
+	    }
+	}
+	System.out.println(currentCards);
+	System.out.println(lastSortedCard);
     }
 
-    void sortCardsNum() {
+    public void sortCardsNum() {
+	
     }
 
-    void sortCardsWild() {
-    }
-   
     public ArrayList<Card> getCurrentCards() {
 	return currentCards;
     }

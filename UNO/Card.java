@@ -84,6 +84,10 @@ public class Card {
 	}
 	return false;
     }
+
+    public int getColor() {
+	return this.color;
+    }
     
     /* 
     public static void main(String[] args){
