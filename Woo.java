@@ -1,7 +1,7 @@
 import java.util.*;
 import UNO.*;
 import UNO.cs1.Keyboard;
-import java.io.Console;
+import java.io.Console; 
 
 public class Woo {
 	
@@ -38,6 +38,19 @@ public class Woo {
 	}				
     }
 
+     public void reverse(int index){
+	ArrayList<Player> temp = new ArrayList<Player>();
+	temp.add(allPlayers.get(index));
+	for (int x = index - 1; x >= 0; x --){
+	    temp.add(allPlayers.get(x));
+	}
+	for (int i = allPlayers.size()-1; i > index; i --){
+	    temp.add(allPlayers.get(i));
+	}
+	allPlayers = temp;
+	System.out.println(allPlayers);
+    }
+    
     public void checkDiscardPile(){
 	if (drawPile.size() == 0) {
 	    drawPile = discardPile;
@@ -46,6 +59,16 @@ public class Woo {
 	}
     }	
 
+    public String mkPin() {
+	Console pwd = System.console();
+	char[] pass = pwd.readPassword();
+ 	String retStr = "";
+ 	for (char s : pass) {
+     	    retStr += s; 
+ 	}
+ 	return retStr;
+    }
+    
     public String draw(Player currentPlayer){
 	checkDiscardPile();
 	currentPlayer.draw(drawPile);
@@ -60,29 +83,19 @@ public class Woo {
 	System.out.println("The first card is: " + drawPile.get(drawPile.size() - 1));
 	discardPile.add(drawPile.remove(drawPile.size() - 1));
     }
-
-    public String mkPin() {
-	Console pwd = System.console();
-	char[] pass = pwd.readPassword();
-	String retStr = "";
-	for (char s : pass) {
-	    retStr += s; 
-	}
-	return retStr;
-    }
     
-    public static void clearScreen() {  
-	System.out.print("\033[H\033[2J");  
-	System.out.flush();  
+    public static void clearScreen() {
+	String cls="printf \"\033c\"";
+       	System.out.println(cls);
+	//System.out.print("\033[H\033[2J");  
+	//System.out.flush();  	
     }
     
     public void beginGame() {
-	//----STRINGS-----------
 	String start="Welcome to UNO!\n"; 
 	start+="Enter 1 for starting the game! \n";
 	start+="Enter 2 for rules \n";
 	System.out.println(start);
-	//-----------------------	
 	int typegame=Keyboard.readInt();
 	while (typegame < 1 || typegame >= 2){	   
 	    if (typegame==2){
@@ -98,6 +111,7 @@ public class Woo {
 		rules+="The first player to get rid of his/her last card wins the round and scores points for the cards held by the other players.Number cards count their face value, all action cards count 20, and Wild and Wild Draw Four cards count 50. If a Draw Two or Wild Draw Four card is played to go out, the next player in sequence must draw the appropriate number of cards before the score is tallied. \n";
 		rules+="First player to reach 500 points wins. \n";
 		rules+="==============================================\n";
+
 		System.out.print(rules);
 		typegame=0;
 	    }
@@ -108,31 +122,28 @@ public class Woo {
 	    System.out.print("How many players?:"); //does not take into account if # of players >5
 	    numRealPlayers=Keyboard.readInt();	    
 	}
-	
-	String tempName;
-	String tempPin;
-	for(int i = 0; i < numRealPlayers; i++) {
+	for (int i = 0; i < numRealPlayers; i++) {
 	    //set name
-	    System.out.println("Enter player"+ (i + 1) +" name:");
-	    tempName=Keyboard.readString();
+	    System.out.println("Enter player"+(i + 1) +" name:");	
+	    String tempName=Keyboard.readString();
 	    //set pin
 	    System.out.println("Enter player"+(i + 1) +" pin (4-digits):");
-	    tempPin=mkPin();
-       	    boolean tempSizeTF = true;
+	    boolean tempSizeTF = true;
+	    String tempPin=mkPin();
 	    while (tempSizeTF) {
 		if (tempPin.length() == 4) { 
 		    tempSizeTF = false;
 		}
 		else {
 		    System.out.println("pin has to be 4 characters please re-enter");
-		    tempPin = Keyboard.readString();
+		    tempPin = mkPin();
 		}
 	    }
 	    allPlayers.add(new Player(tempName, tempPin));
 	}
-  	rollDice();
-	//	System.out.println(allPlayers);
-    } 
+	rollDice();
+	//System.out.println(allPlayers);
+    }
 
     
     //actual game methods go here
@@ -184,7 +195,11 @@ public class Woo {
 		if (move==1){ //PLAY
 		    System.out.println("enter the card you want to play by entering the index:"); 
 		    int cardIndex = Keyboard.readInt();
-	
+		    //checks if the index would return an error
+		    while (cardIndex >= (currentPlayer.getCurrentCards() ).size() - 1 ) {
+			System.out.println("the inputed index is too large. Re-enter an index");
+			cardIndex = Keyboard.readInt();
+		    }
 		    while( !(currentPlayer.playCard(cardIndex, discardPile)) ){
 		        System.out.println("WRONG CARD PLAYED! the card must match in color, number or action! \n 1. Try again \n 2. Draw");
  			move=Keyboard.readInt();
@@ -200,7 +215,7 @@ public class Woo {
 		    if( thisCard instanceof SpecialCard){
 			//if the card played is a reverse
 			if (((SpecialCard)thisCard).getAction() == 1){ 
-			    allPlayers = SpecialCard.reverse(turn, allPlayers);
+			    reverse(turn);
 			    turn = 0; //resets the turn bc if you reverse the allPlayer ArrayList, it will begin with the currentPlayer
 			}
 			
@@ -241,10 +256,9 @@ public class Woo {
 				     (currentPlayer.getCurrentCards().get(currentPlayer.getCurrentCards().size()-1) ) 
 				      )) {
 			System.out.println("Current hand: " + currentPlayer.getCurrentCards());
-			System.out.println("Do you want to play the card that you just drew? 1.YES 2.NO"); 
+			System.out.println("Do you want to play the card that you just drew? 1.YES 2.NO");
 			int choice = Keyboard.readInt();
 			if (choice == 1){
-			    //add exception here
 			    move = 1;  
 			    int index = currentPlayer.getCurrentCards().size()-1;
 			    currentPlayer.playCard(index, discardPile);
@@ -253,7 +267,7 @@ public class Woo {
 			    if( thisCard instanceof SpecialCard){
 				//if the card played is a reverse
 				if (((SpecialCard)thisCard).getAction() == 1){ 
-				    allPlayers = SpecialCard.reverse(turn, allPlayers);
+				    reverse(turn);
 				    turn = 0; //resets the turn bc if you reverse the allPlayer ArrayList, it will begin with the currentPlayer
 				}
 			
@@ -265,9 +279,9 @@ public class Woo {
 				}
 			    }
 			}
-		    }
+		    }// end of draw and play
 		}
-			
+		
 		if (currentPlayer.getCurrentCards().size()==0) { 
 		    System.out.println("WINNER!");
 		    break;

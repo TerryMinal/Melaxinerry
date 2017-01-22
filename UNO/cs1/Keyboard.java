@@ -251,7 +251,7 @@ public class Keyboard
       } 
       catch (Exception exception) 
       {
-         error ("Error reading int data, 0 value returned.");
+         error ("Error reading int data, first card played.");
          value = 0;
       }
       return value;

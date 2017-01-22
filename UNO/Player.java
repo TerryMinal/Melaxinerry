@@ -1,9 +1,9 @@
 package UNO;
 import java.util.*;
-//import java.io.Console.*; 
 import UNO.cs1.Keyboard;
+import java.io.Console; 
 
-public class Player {
+public class Player{
     protected String name;
     protected int score;
     protected String pin; //4-digit
@@ -26,8 +26,16 @@ public class Player {
     }
     
     //takes card from end of the array 
-    public void draw(ArrayList<Card> deck) {
-	currentCards.add(deck.remove(deck.size() - 1));
+    public Card draw(ArrayList<Card> deck) {
+	Card drawn = deck.remove(deck.size() - 1);
+	currentCards.add(drawn);
+	return drawn;
+    }
+
+    public int setScore(int score) {
+	int oldScore = this.score;
+	this.score = score;
+	return oldScore;
     }
     
     public boolean isCallUNO() {
@@ -64,48 +72,28 @@ public class Player {
 	return currentCards;
     }
 
-
-    public String setName(String name) {
-	String oldName = this.name;
-	this.name = name;
-	return oldName;
-    }
-
-    public String getName() {
-	return name;
-    }
-
-    public String setPin(String pin) {
-	String oldPin = this.pin;
-	this.pin = pin;
-	return oldPin;
-    }
-
-    public String getPin() {
-	return pin; 
-    }
-
-    public void checkPin() {
-	System.out.println("Please enter the pin:");
-	String pin = Keyboard.readString();	
-	while (!(this.pin.equals(pin)) ){
-	    System.out.println("WRONG PIN! Please re-enter:");
-	    pin = Keyboard.readString();
-	}
-    }
-
-    public int setScore(int score) {
-	int oldScore = this.score;
-	this.score = score;
-	return oldScore;
-    }
-    
     public int getScore(){
-	return score;
+	return this.score;
+    }
+
+    public void checkPin(){
+	System.out.println("Please enter the pin:");
+	Console pwd = System.console();
+	char[] pass = pwd.readPassword();
+ 	String pin = "";
+ 	for (char s : pass) {
+     	    pin += s; 
+ 	}
+	if ( !(this.pin.equals(pin)) ){
+	    System.out.println("WRONG PIN! Please re-enter:");
+	    checkPin();
+	}
+	else
+	    return; 
     }
     
     public String toString(){
-	return name;
+	return this.name;
     }
 
 }//end class
