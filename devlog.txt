@@ -25,7 +25,8 @@ MID-DEVELOPMENT DESIGN CHANGES:
 Deck.java needs to be removed because it's more of annoying than helpful
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-LESSONS LEARNED: 
+LESSONS LEARNED:
+Strings equality is still .equal()!!!!!!
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 2017-01-11

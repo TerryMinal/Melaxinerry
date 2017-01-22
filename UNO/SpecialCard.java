@@ -1,4 +1,5 @@
 package UNO;
+import java.util.*;
 public class SpecialCard extends Card { 
     private int action;
     //1: reverse, 2: skip, 3: draw2, 4: wild, 5: wild & draw4
@@ -31,6 +32,22 @@ public class SpecialCard extends Card {
 	}
     }//end overloaded constructor
 
+    public int getAction(){
+	return this.action;
+    }
+    
+    public static ArrayList<Player> reverse(int index, ArrayList<Player> allPlayers){
+	ArrayList<Player> temp = new ArrayList<Player>();
+	temp.add(allPlayers.get(index));
+	for (int x = index - 1; x >= 0; x --){
+	    temp.add(allPlayers.get(x));
+	}
+	for (int i = allPlayers.size()-1; i > index; i --){
+	    temp.add(allPlayers.get(i));
+	}
+	return temp;
+    }
+
     public String toString(){
 	String retStr = "";
 	if (color == 1){
@@ -48,8 +65,4 @@ public class SpecialCard extends Card {
 	return retStr + name;
     }
 
-    public int getAction(){
-	return this.action;
-    }
-    
 }//end class

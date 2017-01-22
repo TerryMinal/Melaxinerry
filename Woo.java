@@ -8,9 +8,7 @@ public class Woo {
     ArrayList<Player> allPlayers;
     ArrayList<Card> discardPile;
     ArrayList<Card> drawPile;
-    ArrayList<String> names; //all players' names
-    ArrayList<Integer> pins; //all players' pins corresponding to the index of names
-    //instantiate players and put them in arraylist  
+
     public Woo() {
 	numAi = 0;
 	numRealPlayers = 0;	
@@ -18,8 +16,6 @@ public class Woo {
 	discardPile = new ArrayList<Card>();
    	drawPile = Card.createDeck();
 	Card.shuffle(drawPile);
-	names = new ArrayList <String>();
-	pins  = new ArrayList <Integer>();
     }
 
    public void distribute() {
@@ -40,19 +36,6 @@ public class Woo {
 	}				
     }
 
-     public void reverse(int index){
-	ArrayList<Player> temp = new ArrayList<Player>();
-	temp.add(allPlayers.get(index));
-	for (int x = index - 1; x >= 0; x --){
-	    temp.add(allPlayers.get(x));
-	}
-	for (int i = allPlayers.size()-1; i > index; i --){
-	    temp.add(allPlayers.get(i));
-	}
-	allPlayers = temp;
-	System.out.println(allPlayers);
-    }
-    
     public void checkDiscardPile(){
 	if (drawPile.size() == 0) {
 	    drawPile = discardPile;
@@ -85,19 +68,6 @@ public class Woo {
     
     public void beginGame() {
 	//----STRINGS-----------
-	String rules="How to Play:\n";
-	rules+="A game of UNO consists of 2-5 players. Each player starts with 7 cards \n";
-	rules+="A dice is rolled to see who goes first.\n";
-	rules+="On a players turn, he/she must do ONE of the following: Draw or Play or Call UNO.\n";
-	rules+="-play a card matching the discard in either color, number, or symbol\n";
-	rules+="-play a Wild card, or a playable Wild Draw Four card\n";
-	rules+="-draw a card from the deck.\n";
-	rules+="-you must call UNO when you have one card left. If you didn't call UNO before your turn is over, you will draw 2 cards. If you call UNO when you have more than one card, you will draw 4 cards.\n";
-	rules+="How to Win:\n";
-	rules+="The first player to get rid of his/her last card wins the round and scores points for the cards held by the other players.Number cards count their face value, all action cards count 20, and Wild and Wild Draw Four cards count 50. If a Draw Two or Wild Draw Four card is played to go out, the next player in sequence must draw the appropriate number of cards before the score is tallied. \n";
-	rules+="First player to reach 500 points wins. \n";
-	rules+="==============================================\n";
-
 	String start="Welcome to UNO!\n"; 
 	start+="Enter 1 for starting the game! \n";
 	start+="Enter 2 for rules \n";
@@ -106,6 +76,18 @@ public class Woo {
 	int typegame=Keyboard.readInt();
 	while (typegame < 1 || typegame >= 2){	   
 	    if (typegame==2){
+		String rules="How to Play:\n";
+		rules+="A game of UNO consists of 2-5 players. Each player starts with 7 cards \n";
+		rules+="A dice is rolled to see who goes first.\n";
+		rules+="On a players turn, he/she must do ONE of the following: Draw or Play or Call UNO.\n";
+		rules+="-play a card matching the discard in either color, number, or symbol\n";
+		rules+="-play a Wild card, or a playable Wild Draw Four card\n";
+		rules+="-draw a card from the deck.\n";
+		rules+="-you must call UNO when you have one card left. If you didn't call UNO before your turn is over, you will draw 2 cards. If you call UNO when you have more than one card, you will draw 4 cards.\n";
+		rules+="How to Win:\n";
+		rules+="The first player to get rid of his/her last card wins the round and scores points for the cards held by the other players.Number cards count their face value, all action cards count 20, and Wild and Wild Draw Four cards count 50. If a Draw Two or Wild Draw Four card is played to go out, the next player in sequence must draw the appropriate number of cards before the score is tallied. \n";
+		rules+="First player to reach 500 points wins. \n";
+		rules+="==============================================\n";
 		System.out.print(rules);
 		typegame=0;
 	    }
@@ -116,22 +98,30 @@ public class Woo {
 	    System.out.print("How many players?:"); //does not take into account if # of players >5
 	    numRealPlayers=Keyboard.readInt();	    
 	}
-	String tempname;
-	int temppin;
-	for (int a = 1 ; a <= numRealPlayers; a++){
-	    System.out.println("Enter player"+ a+" name:");
-	    tempname=Keyboard.readString();
-	    names.add(tempname);
-	    System.out.println("Enter player"+ a+" pin (4-digits):");
-	    temppin=Keyboard.readInt();
-	    pins.add(temppin);
+	
+	String tempName;
+	String tempPin;
+	for(int i = 0; i < numRealPlayers; i++) {
+	    //set name
+	    System.out.println("Enter player"+ (i + 1) +" name:");
+	    tempName=Keyboard.readString();
+	    //set pin
+	    System.out.println("Enter player"+(i + 1) +" pin (4-digits):");
+       	    tempPin=Keyboard.readString();
+	    boolean tempSizeTF = true;
+	    while (tempSizeTF) {
+		if (tempPin.length() == 4) { 
+		    tempSizeTF = false;
+		}
+		else {
+		    System.out.println("pin has to be 4 characters please re-enter");
+		    tempPin = Keyboard.readString();
+		}
+	    }
+	    allPlayers.add(new Player(tempName, tempPin));
 	}
-	for(int i = 0; i < numRealPlayers; i++){
-	    allPlayers.add(new Player(names.get(i),pins.get(i)));
-	}
-	rollDice();
+  	rollDice();
 	System.out.println(allPlayers);
-      
     } 
 
     
@@ -200,7 +190,7 @@ public class Woo {
 		    if( thisCard instanceof SpecialCard){
 			//if the card played is a reverse
 			if (((SpecialCard)thisCard).getAction() == 1){ 
-			    reverse(turn);
+			    allPlayers = SpecialCard.reverse(turn, allPlayers);
 			    turn = 0; //resets the turn bc if you reverse the allPlayer ArrayList, it will begin with the currentPlayer
 			}
 			
@@ -253,7 +243,7 @@ public class Woo {
 			    if( thisCard instanceof SpecialCard){
 				//if the card played is a reverse
 				if (((SpecialCard)thisCard).getAction() == 1){ 
-				    reverse(turn);
+				    allPlayers = SpecialCard.reverse(turn, allPlayers);
 				    turn = 0; //resets the turn bc if you reverse the allPlayer ArrayList, it will begin with the currentPlayer
 				}
 			
