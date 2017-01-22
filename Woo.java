@@ -1,6 +1,8 @@
 import java.util.*;
 import UNO.*;
 import UNO.cs1.Keyboard;
+import java.io.Console;
+
 public class Woo {
 	
     int numAi;
@@ -58,6 +60,16 @@ public class Woo {
 	System.out.println("The first card is: " + drawPile.get(drawPile.size() - 1));
 	discardPile.add(drawPile.remove(drawPile.size() - 1));
     }
+
+    public String mkPin() {
+	Console pwd = System.console();
+	char[] pass = pwd.readPassword();
+	String retStr = "";
+	for (char s : pass) {
+	    retStr += s; 
+	}
+	return retStr;
+    }
     
     public static void clearScreen() {
 	String cls="printf \"\033c\"";
@@ -107,8 +119,8 @@ public class Woo {
 	    tempName=Keyboard.readString();
 	    //set pin
 	    System.out.println("Enter player"+(i + 1) +" pin (4-digits):");
-       	    tempPin=Keyboard.readString();
-	    boolean tempSizeTF = true;
+	    tempPin=mkPin();
+       	    boolean tempSizeTF = true;
 	    while (tempSizeTF) {
 		if (tempPin.length() == 4) { 
 		    tempSizeTF = false;
@@ -121,7 +133,7 @@ public class Woo {
 	    allPlayers.add(new Player(tempName, tempPin));
 	}
   	rollDice();
-	System.out.println(allPlayers);
+	//	System.out.println(allPlayers);
     } 
 
     

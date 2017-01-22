@@ -1,8 +1,9 @@
 package UNO;
 import java.util.*;
+//import java.io.Console.*; 
 import UNO.cs1.Keyboard;
 
-public class Player{
+public class Player {
     protected String name;
     protected int score;
     protected String pin; //4-digit
