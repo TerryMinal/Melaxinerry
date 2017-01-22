@@ -7,27 +7,32 @@ pd 4
 UNO
 
 OBSTACLES OVERCOME:
-Deck.java needs to be removed because it's more of annoying than helpful
-need to make the pin secure so no other people can see it/ recognize it -> command line input masking??
-reverse act as a skip when theres only two players
-need to catch exceptions when player inputs an index greater than the size
-
+-Finally finished a full working project on Friday after multiple bugs.
+-Code broke the day before submission so we had to compare the old commits to the current files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 UNRESOLVED ISSUES:
-need to display message if someone called UNO, played a skip, or played a reverse
+-need to display message if someone called UNO, played a skip, or played a reverse
+-need to catch exceptions when player inputs an index greater than the size
+-need to make the pin secure so no other people can see it/ recognize it -> command line input masking??
+-rules is still too clunky. User will probably not want to read.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 COOL STUFF LEARNED:
 ANSI escape code for clearing the terminal screen
+<insert thing> to hide a pin
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 MID-DEVELOPMENT DESIGN CHANGES: 
-Deck.java needs to be removed because it's more of annoying than helpful
+-Deck.java was removed since it became more annoying than helpful
+-the way UNO would be called changed multiple times, from having it at the beginning of the turn, to making it a minigame, to moving it at the end of a turn.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 LESSONS LEARNED:
-Strings equality is still .equal()!!!!!!
+-Strings equality is still .equal()
+-Have a plan and communicate.
+-Test, test, test.
+-Finish early and save at least a whole day solely for exception handling 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 2017-01-11
