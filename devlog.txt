@@ -59,8 +59,13 @@ Melanie Chow :: Wrote the ReadMe file, made draw function more user friendly, ad
 2017-01-18
 --------------------------------------------------------------
 Xin Yi Chen :: added rules for reverse, skip cards, draw2 cards, and wild cards 
+Melanie Chow:: Completed readme file, added back UNO as a third option between playing and drawing
 --------------------------------------------------------------
 2017-01-19
 --------------------------------------------------------------
 Xin Yi Chen :: added rules for special cards for the option: play after draw. Edited method firstCard() so the first card of the game will never be a special card. Also added a method to clear the terminal screen (using ANSI ecape codes) when it's next player's turn.
+--------------------------------------------------------------
+2017-01-20
+--------------------------------------------------------------
+Melanie Chow:: Changed ending terminal screen message & fixed UNO bug by changing game to 2 options, where the user is asked if he/she wants to call UNO after every time he/she plays a card.
 --------------------------------------------------------------
