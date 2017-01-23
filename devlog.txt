@@ -9,6 +9,7 @@ UNO
 OBSTACLES OVERCOME:
 -Finally finished a full working project on Friday after multiple bugs.
 -Code broke the day before submission so we had to compare the old commits to the current files
+-Merge conflicts led to some issues
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 UNRESOLVED ISSUES:
@@ -21,8 +22,9 @@ Use the java.io.Console method readPassword() to hide a pin
 
 MID-DEVELOPMENT DESIGN CHANGES: 
 -Deck.java was removed since it became more annoying than helpful
--the way UNO would be called changed multiple times, from having it at the beginning of the turn, to making it a minigame, to moving it at the end of a turn.
--not allow player to play a wild card after a wild card because it would be unfair to other players
+-The action of the wild card was changed to play any card you wanted, since it worked better with the framework we had and led to less thinking/rule following for the user.
+-The way UNO would be called changed multiple times, from having it at the beginning of the turn, to making it a minigame, to moving it at the end of a turn. It was changed since having it in the beginning seemed annoying for the user and the way it was formatted (with 3 options: play,draw, or call uno) did not account for having UNO after the second to last card was played. The minigame idea was scrapped as it would not have worked with the AI systems. This would've led to the minigame only being played when computers weren't present, and led to too many complex rules that would be overwhelming for the user.
+-We did not allow a player to play a wild card after a wild card because it would be unfair to other players.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 LESSONS LEARNED:
@@ -30,7 +32,8 @@ LESSONS LEARNED:
 -Have a plan and communicate.
 -Test, test, test.
 -Finish early and save at least a whole day solely for exception handling
--Sleep deprivation leads to decrease REM sleep which results in decreased memory consolidation 
+-Sleep deprivation leads to decrease REM sleep which results in decreased memory consolidation
+-Planning + deadlines + communication + testing = flow :) 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 2017-01-11
@@ -76,6 +79,12 @@ Xin Yi Chen :: revised the clearScreen method so it disabled scroll up function 
 2017-01-21
 --------------------------------------------------------------
 Terry Guan :: added sorting to Player class. Made it so that players cannot enter indexes out of range of the array. Added game-end sequence. Added pins security
+--------------------------------------------------------------
+2017-01-22
+--------------------------------------------------------------
+Terry Guan :: fixed clearscreen() and debugged sorting methods, started AI
+Melanie Chow :: shortened rules, revised the callUNO method, and ran tests.
+Xin Yi Chen :: Added comments, action card messages, and exceptions. Fixed reverse as a skip. Ran tests
 --------------------------------------------------------------
 2017-01-23
 --------------------------------------------------------------
