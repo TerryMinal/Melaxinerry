@@ -243,7 +243,7 @@ public class Woo {
 		    System.out.println("enter the card you want to play by entering the index:"); 
 		    int cardIndex = Keyboard.readInt();
 		    //checks if the index would return an error
-		    while (cardIndex >= (currentPlayer.getCurrentCards() ).size() - 1 || cardIndex < 0) {
+		    while (cardIndex > (currentPlayer.getCurrentCards() ).size() - 1 || cardIndex < 0) {
 			System.out.println("the inputed index is out of bound. Re-enter an index");
 			cardIndex = Keyboard.readInt();
 		    }
