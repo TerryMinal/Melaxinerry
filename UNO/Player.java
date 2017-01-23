@@ -110,7 +110,7 @@ public class Player{
 	return this.score;
     }
 
-       public int setScore(int score) {
+    public int setScore(int score) {
 	int oldScore = score;
 	this.score = score;
 	return oldScore;

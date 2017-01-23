@@ -115,6 +115,16 @@ public class Woo {
        	System.out.println(cls);  	
     }
 
+    //displays the number of cards each player has left
+    public void playerCardInfo(){
+	String info = "==============================================\n";
+	for (int i = 0; i < allPlayers.size(); i ++){
+	    info = info +  allPlayers.get(i) + " has " + allPlayers.get(i).getCurrentCards.size()+" cards left.\n";
+	}
+	info += "==============================================\n";
+	System.out.println(info);
+    }
+
     //prints the start screen
     //players enter their corresponding names & pins
     public void beginGame() {
@@ -187,6 +197,7 @@ public class Woo {
 	int move = 0;
 	while (gameCont) {
 	    for (int turn = 0; turn < allPlayers.size(); turn++) {
+
 		//if the last player played a skip
 		if (move == 1){
 		    Card lastCard = discardPile.get(discardPile.size()-1);
@@ -234,6 +245,9 @@ public class Woo {
 		System.out.println("Player "+ currentPlayer + "'s turn:");
 	        currentPlayer.checkPin();
 
+		//displays how many cards each player has
+		playerCardInfo();
+		
 		//displays the current player's info
 		System.out.println("============================================");		
 		System.out.println("Top most card played: " + discardPile.get(discardPile.size() - 1));	
