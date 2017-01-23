@@ -6,6 +6,7 @@ public class SpecialCard extends Card {
     
     public SpecialCard(int action1,int color1){
 	color = color1; // 1: red, 2: blue, 3: yellow, 4: green, 5:wild/black
+	super.num = 10; 
 	action = action1;
 	if (action == 1){
 	    name = "Reverse";
@@ -31,6 +32,10 @@ public class SpecialCard extends Card {
 	}
     }//end overloaded constructor
 
+    public int getAction(){
+	return this.action;
+    }
+    
     public String toString(){
 	String retStr = "";
 	if (color == 1){
@@ -48,8 +53,4 @@ public class SpecialCard extends Card {
 	return retStr + name;
     }
 
-    public int getAction(){
-	return this.action;
-    }
-    
 }//end class

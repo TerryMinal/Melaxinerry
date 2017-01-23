@@ -1,6 +1,7 @@
 package UNO;
 import java.util.*;
 public class Card {
+    protected int num; 
     protected int color; // 1: red, 2: blue, 3: yellow, 4: green, 5:wild/black
     protected int pointVal; /*Number cards count their face value, all action cards count 20, and Wild and Wild Draw Four cards count 50. If a Draw Two or Wild Draw Four card is played to go out, the next player in sequence must draw the appropriate number of cards before the score is tallied.*/
      
@@ -88,7 +89,20 @@ public class Card {
     public int getColor() {
 	return this.color;
     }
-    
+
+    public int getNum() {
+	return num; 
+    }
+
+    public int getPoint() {
+	return pointVal; 
+    }
+
+    public int setPoint(int point) {
+	int oldPoint = pointVal;
+	pointVal = point;
+	return oldPoint;
+    }
     /* 
     public static void main(String[] args){
 	ArrayList<Card> test = Card.createDeck();

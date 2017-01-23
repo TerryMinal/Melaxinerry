@@ -32,12 +32,6 @@ public class Player{
 	return drawn;
     }
 
-    public int setScore(int score) {
-	int oldScore = this.score;
-	this.score = score;
-	return oldScore;
-    }
-    
     public boolean isCallUNO() {
 	if (currentCards.size() == 1) {
 	    return true;
@@ -56,12 +50,15 @@ public class Player{
 	}
     }
     
-    public void sortCards(int whichSort) {
-	if (whichSort == 1)
-	    sortCardsColor();
-    }
-
-    public void sortCardsColor() {
+    public void sortCards() {
+	System.out.println("How would you like to sort it by: \n1:Color \n2:Numerical Order \n");
+	int whichSort = Keyboard.readInt();
+	while (whichSort < 1 || whichSort > 2) {
+	    System.out.println("please input an acceptable number");
+	    whichSort = Keyboard.readInt();
+	}
+	 
+	if (whichSort == 1) {
 	// 1: red, 2: blue, 3: yellow, 4: green
 	System.out.println("Which color: \n1:red \n2:blue \n3:yellow \n4:green \n5:wild");
 	int color = Keyboard.readInt();
@@ -69,6 +66,16 @@ public class Player{
 	    System.out.println("wrong input. Please input an acceptable number");
 	    color = Keyboard.readInt();
 	}
+	    sortCardsColor(color);
+	    System.out.println(currentCards);
+	}
+	else {
+	    sortCardsNum();
+	    System.out.println(currentCards);
+	}
+    }
+
+    public int sortCardsColor(int color) {
 	int lastSortedCard = 0; 
 	//selection sort
 	for (int i = 0; i < currentCards.size()-1; i++) {
@@ -85,12 +92,20 @@ public class Player{
 		}
 	    }
 	}
-	System.out.println(currentCards);
-	System.out.println(lastSortedCard);
+	return lastSortedCard; 
     }
 
+    //insertion sort
     public void sortCardsNum() {
-	
+	for (int x = 1; x < currentCards.size(); x++) {
+	    for (int n = x - 1; n >= 0; n--) {
+		System.out.println(currentCards.get(x) + ": (is being switched)  " + currentCards.get(x).getNum());
+		if (currentCards.get(x).getNum() < currentCards.get(n).getNum()  ) {
+		     System.out.println(currentCards.get(n) + ": " + currentCards.get(n).getNum());
+		    currentCards.set(x, currentCards.set(n, currentCards.get(x)));
+		}
+	    }
+	}
     }
 
     public ArrayList<Card> getCurrentCards() {
@@ -101,6 +116,12 @@ public class Player{
 	return this.score;
     }
 
+       public int setScore(int score) {
+	int oldScore = score;
+	this.score = score;
+	return oldScore;
+    }
+    
     public void checkPin(){
 	System.out.println("Please enter the pin:");
 	Console pwd = System.console();

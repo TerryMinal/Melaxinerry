@@ -75,22 +75,13 @@ public class Woo {
 	return "You drew: "+currentPlayer.getCurrentCards().get(currentPlayer.getCurrentCards().size()-1);
     }
     public static void sort(Player currentPlayer) {
-	    System.out.println("How would you like to sort it by: \n1:Color \n2:Number \n");
-	    int whichSort = Keyboard.readInt();
-	    while (whichSort < 1 || whichSort > 2) {
-		System.out.println("please input an acceptable number");
-		whichSort = Keyboard.readInt();
-	    }
-	    currentPlayer.sortCards(whichSort); 
-	
-
+	currentPlayer.sortCards();
 	System.out.println("would you like to sort again: \n1:Yes \n2:No");
 	int more = Keyboard.readInt();
 	if (more < 1 || more > 2) {
 	    System.out.println("please enter an acceptable number");
 	    more = Keyboard.readInt();
 	}
-
 	//recursive statements
 	if (more == 1)
 	    sort(currentPlayer);
@@ -312,10 +303,23 @@ public class Woo {
 			}
 		    }// end of draw and play
 		}
-		
-		if (currentPlayer.getCurrentCards().size()==0) { 
+	       
+		if (currentPlayer.getCurrentCards().size() == 0) {
 		    System.out.println("WINNER!");
-		    break;
+		    int score = 0; 
+		    for (Player s : allPlayers) {
+			for (Card x : s.getCurrentCards() ) {
+			    score += x.getPoint(); 
+			}
+		    }
+		    currentPlayer.setScore(score);
+		    if (currentPlayer.getScore() >= 500) {
+			System.out.println("You won the whole game!");
+			break;
+		    }
+		    else {
+			playGame();
+		    }
 		}
 
 		System.out.println("Current hand: " + currentPlayer.getCurrentCards());
@@ -327,6 +331,7 @@ public class Woo {
 		    System.out.println("Your turn is over. End Turn? \n 1.Yes");
 		    next = Keyboard.readInt();
 		}
+
 		clearScreen();
 		
 	    }
