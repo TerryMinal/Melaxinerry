@@ -125,7 +125,7 @@ public class Woo {
 	System.out.println(info);
     }
 
-    //prints the start screen
+    //prints the start screen + rules
     //players enter their corresponding names & pins
     public void beginGame() {
 	String start="Welcome to UNO!\n"; 
@@ -138,8 +138,9 @@ public class Woo {
 		String rules="\nHow to Play:\n";
 		rules+="1. A game consists of 2-5 players. Each player starts with 7 cards and a dice is rolled \n";
 		rules+="2. On your turn, you must either draw or play \n";
-		rules+="3. To play a card, the color or number must match the last played card.\n";
-		rules+="4. You must call UNO when you have one card left, or else you will draw 2 cards. If you call UNO when you have more than one card, you will draw 2 cards.\n\n";
+		rules+="3. To play a card, color, number, or action must match the last played card.\n";
+		rules+="4. You must call UNO when you have one card left, or else you will draw 2 cards. If you call UNO when you have more than one card, you will draw 2 cards.\n";
+		rules+="\n     Card Actions:\n    -Reverse: Reverses the turn order\n    -Skip: Skips the next players turn\n    -Draw2: Next player draws 2 cards\n    -Wild/Wild Draw4: Play again, with any card you want \n\n";
 		rules+="How to Win:\n";
 		rules+="1. The first player to get rid of his/her last card wins!\n";
 		rules+="2. Cards from the other players hand are added to the winner's score: \n\n     Card Values:\n    -Number Cards: their face value \n    -Action Cards (skip, reverse, draw2): 20 \n    -Wild/Wild Draw 4: 50 \n\n";
@@ -390,7 +391,7 @@ public class Woo {
 				callUNO= Keyboard.readInt();
 			    }
 			    if (callUNO == 1){
-				if (currentPlayer.getCurrentCards().size() !=1){ 
+				if (currentPlayer.getCurrentCards().size() >1){ 
 				    //IF YOU DON'T HAVE UNO-->DRAW 2 CARDS
 				    System.out.println("\nEek! You don't have UNO! Draw 2 Cards. \n");
 				    System.out.println(draw(currentPlayer));
@@ -399,7 +400,7 @@ public class Woo {
 			    }
 
 			    //if the currentPlayer only has one card left and he/she didnt call UNO
-			    if (currentPlayer.getCurrentCards().size()==1 && callUNO == 2){			  
+			    if (currentPlayer.getCurrentCards().size()<=1 && callUNO == 2){			  
 				System.out.println("\nSo close...yet so far. Remember to call UNO next time. Draw 2 \n");
 				System.out.println(draw(currentPlayer));		
 				System.out.println(draw(currentPlayer)+"\n");
