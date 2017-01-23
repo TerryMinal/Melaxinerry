@@ -58,7 +58,7 @@ public class Woo {
     }
 
     //if the drawPile is empty, it will turn the discardPile into the drawPile and shuffle it
-    public void checkDiscardPile(){
+    public void checkDrawPile(){
 	if (drawPile.size() == 0) {
 	    drawPile = discardPile;
 	    Card.shuffle(drawPile);
@@ -78,7 +78,7 @@ public class Woo {
 
     //the currentPlayer draws the last card from the drawPile
     public String draw(Player currentPlayer){
-	checkDiscardPile();
+	checkDrawPile();
 	currentPlayer.draw(drawPile);
 	return "You drew: "+currentPlayer.getCurrentCards().get(currentPlayer.getCurrentCards().size()-1);
     }
