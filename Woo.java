@@ -332,6 +332,7 @@ public class Woo {
 				    while(temp instanceof SpecialCard && (((SpecialCard)temp).getAction() ==  4 || ((SpecialCard)temp).getAction() ==  5)){
 					System.out.println("You cannot play a wild card after a wild card. Re-enter an index:");
 					cardIndex = Keyboard.readInt();
+					temp = currentPlayer.getCurrentCards().get(cardIndex);
 				    }
 				    
 				}
@@ -408,6 +409,7 @@ public class Woo {
 					    while(temp instanceof SpecialCard && (((SpecialCard)temp).getAction() ==  4 || ((SpecialCard)temp).getAction() ==  5)){
 						System.out.println("You cannot play a wild card after a wild card. Re-enter an index:");
 						cardIndex = Keyboard.readInt();
+						temp = currentPlayer.getCurrentCards().get(cardIndex);
 					    }
 					}
 					currentPlayer.playCard(cardIndex, discardPile);
