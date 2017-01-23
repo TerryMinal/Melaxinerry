@@ -10,9 +10,14 @@ OBSTACLES OVERCOME:
 -Finally finished a full working project on Friday after multiple bugs.
 -Code broke the day before submission so we had to compare the old commits to the current files
 -Merge conflicts led to some issues
+-UNO calling constantly had bugs. Finally fixed on the last day.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 UNRESOLVED ISSUES:
+-AI doesn't fully follow the rules
+  -draw2/4 from ai doesnt affect player
+  -skip doesn't affect ai
+-AI sometimes says it played 2 cards, but it only played the most recent statement.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 COOL STUFF LEARNED:
@@ -31,7 +36,7 @@ LESSONS LEARNED:
 -Strings equality is still .equal()
 -Have a plan and communicate.
 -Test, test, test.
--Finish early and save at least a whole day solely for exception handling
+-Finish early and save at least a whole day solely for exception handling. Early. Early.
 -Sleep deprivation leads to decrease REM sleep which results in decreased memory consolidation
 -Planning + deadlines + communication + testing = flow :) 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
