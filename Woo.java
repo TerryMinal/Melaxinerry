@@ -396,31 +396,34 @@ public class Woo {
 				    }
 				}
 			    }
-			    //if the player wants to call UNO
 
-			    System.out.println("\nDo you want to call UNO? \n1.Yes \n2.No");
-			    int callUNO = Keyboard.readInt();
-			    while (callUNO != 1 && callUNO != 2){
+			    if (currentPlayer.getCurrentCards().size() != 0){
+				//if the player wants to call UNO
+
 				System.out.println("\nDo you want to call UNO? \n1.Yes \n2.No");
-				callUNO= Keyboard.readInt();
-			    }
-			    if (callUNO == 1){
-				if (currentPlayer.getCurrentCards().size() >1){ 
-				    //IF YOU DON'T HAVE UNO-->DRAW 2 CARDS
-				    System.out.println("\nEek! You don't have UNO! Draw 2 Cards. \n");
-				    System.out.println(draw(currentPlayer));
-				    System.out.println(draw(currentPlayer));
+				int callUNO = Keyboard.readInt();
+				while (callUNO != 1 && callUNO != 2){
+				    System.out.println("\nDo you want to call UNO? \n1.Yes \n2.No");
+				    callUNO= Keyboard.readInt();
+				}
+				if (callUNO == 1){
+				    if (currentPlayer.getCurrentCards().size() >1){ 
+					//IF YOU DON'T HAVE UNO-->DRAW 2 CARDS
+					System.out.println("\nEek! You don't have UNO! Draw 2 Cards. \n");
+					System.out.println(draw(currentPlayer));
+					System.out.println(draw(currentPlayer));
+				    }
+				}
+
+				//if the currentPlayer only has one card left and he/she didnt call UNO
+				if (currentPlayer.getCurrentCards().size()<=1 && callUNO == 2){			  
+				    System.out.println("\nSo close...yet so far. Remember to call UNO next time. Draw 2 \n");
+				    System.out.println(draw(currentPlayer));		
+				    System.out.println(draw(currentPlayer)+"\n");
 				}
 			    }
-
-			    //if the currentPlayer only has one card left and he/she didnt call UNO
-			    if (currentPlayer.getCurrentCards().size()<=1 && callUNO == 2){			  
-				System.out.println("\nSo close...yet so far. Remember to call UNO next time. Draw 2 \n");
-				System.out.println(draw(currentPlayer));		
-				System.out.println(draw(currentPlayer)+"\n");
-			    }
-			}
-		    }// end of draw and play
+			}// end of draw and play
+		    }
 		}
 
 		if (currentPlayer.getCurrentCards().size() == 0) { //if the player wins this round
