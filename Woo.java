@@ -200,8 +200,18 @@ public class Woo {
 		//if the last player played a skip
 		if (move == 1){
 		    Card lastCard = discardPile.get(discardPile.size()-1);
-		    if( lastCard instanceof SpecialCard && (((SpecialCard)lastCard).getAction() == 2)){ 
-			turn ++;
+		    if( lastCard instanceof SpecialCard && (((SpecialCard)lastCard).getAction() == 2)){
+			if (allPlayers.size() == 2){
+			    if (turn == 0){
+				turn ++;
+			    }
+			    if (turn == 1){
+				turn --;
+			    }
+			}
+			else{
+			    turn ++;
+			}
 			System.out.println("***LAST PLAYER PLAYED A SKIP!***");
 		    }
 		}
