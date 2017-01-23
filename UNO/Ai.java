@@ -88,8 +88,8 @@ public class Ai extends Player {
 
     private boolean determineSpecialCards(int turn, ArrayList<Player> players, ArrayList<Card> discarded) {
 	super.sortCardsNum();
-	Player nextP = players.get( ((turn + 1) % (players.size())) + players.size());
-	Player RnextP = players.get( ((turn - 1) % (players.size()) ) + players.size());
+	Player nextP = players.get( ((turn + 1) + players.size()) % (players.size()));
+	Player RnextP = players.get( ((turn - 1) + players.size()) % (players.size()));
 	if (currentCards.size() == 2) {
 	    for (int i = 0; i < 2; i++ ) {
 		if (currentCards.get(i).getNum() == 13) {
