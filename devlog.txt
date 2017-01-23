@@ -67,12 +67,17 @@ Melanie Chow:: Completed readme file, added back UNO as a third option between p
 --------------------------------------------------------------
 Xin Yi Chen :: added rules for special cards for the option: play after draw. Edited method firstCard() so the first card of the game will never be a special card. Also added a method to clear the terminal screen (using ANSI ecape codes) when it's next player's turn.
 --------------------------------------------------------------
-<<<<<<< HEAD
-2017-01-21
-Terry Guan: added sorting to Player class. Made it so that players cannot enter indexes out of range of the array. Added game-end sequence. Added pins security 
-=======
 2017-01-20
 --------------------------------------------------------------
-Melanie Chow:: Changed ending terminal screen message & fixed UNO bug by changing game to 2 options, where the user is asked if he/she wants to call UNO after every time he/she plays a card.
->>>>>>> bfaca06b9788edcadacf09193eac42d6166c305b
+Melanie Chow :: Changed ending terminal screen message & fixed UNO bug by changing game to 2 options, where the user is asked if he/she wants to call UNO after every time he/she plays a card.
+Xin Yi Chen :: revised the clearScreen method so it disabled scroll up function in the terminal
+--------------------------------------------------------------
+2017-01-21
+--------------------------------------------------------------
+Terry Guan :: added sorting to Player class. Made it so that players cannot enter indexes out of range of the array. Added game-end sequence. Added pins security 
+--------------------------------------------------------------
+2017-01-23
+--------------------------------------------------------------
+Xin Yi Chen :: Added comments and messages for specialCards. Added exceptions using while loops. Added method to display how many cards each player has currently.
+Xin Yi Chen && Melanie Chow :: ran tests and debugged
 --------------------------------------------------------------
