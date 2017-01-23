@@ -14,7 +14,7 @@ public class Ai extends Player {
 	if (drawOrNot(turn, deck, discarded))
 	    System.out.println("JARVIS drew a card");
 	else if (!(determineSpecialCards(turn, allPlayers, discarded)))
-	    determineNormalCards(discarded);
+	    determineNormalCards(discarded,deck);
 	callUNO();
     }
 
@@ -60,7 +60,7 @@ public class Ai extends Player {
 	return super.playCard(index, discarded);
     }
     
-    private void determineNormalCards(ArrayList<Card> discarded) {
+    private void determineNormalCards(ArrayList<Card> discarded,ArrayList<Card> drawPile) {
 	int topColor = discarded.get(discarded.size() - 1).getColor();
 	int topNum = discarded.get(discarded.size() - 1).getNum();
 	ArrayList<Card> playable = new ArrayList<Card>();
@@ -74,9 +74,14 @@ public class Ai extends Player {
 	double Lprob = 1;
 	double tempProb;
 	// calculate probability of other players having cards
+
 	for (int i = 0; i < playable.size(); i++) {
+	    if(playable.size() == 0) {
+		super.draw(drawPile); 
+		Return;
+	    }
 	    tempProb = calculateProb(discarded, playable.get(i) );
-	    if ( tempProb < Lprob) {
+	    else if ( tempProb < Lprob) {
 		Lprob =tempProb;
 		index = i; 
 	    }
