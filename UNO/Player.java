@@ -8,7 +8,6 @@ public class Player{
     protected int score;
     protected String pin; //4-digit
     protected ArrayList <Card> currentCards;
-    public int calledUNO=0;
     
     public Player(String name, String pin){
 	this.name = name;
@@ -32,15 +31,6 @@ public class Player{
 	Card drawn = deck.remove(deck.size() - 1);
 	currentCards.add(drawn);
 	return drawn;
-    }
-
-    public boolean isCallUNO() {
-	if (currentCards.size() == 1) {
-	    return true;
-	}
-	else {
-	    return false;
-	}
     }
 
     //if the current player has 0 current cards -> wins the round

@@ -191,8 +191,8 @@ public class Woo {
 		if (move == 1){
 		    Card lastCard = discardPile.get(discardPile.size()-1);
 		    if( lastCard instanceof SpecialCard && (((SpecialCard)lastCard).getAction() == 2)){ 
-			    turn ++;
-			    System.out.println("***LAST PLAYER PLAYED A SKIP!***");
+			turn ++;
+			System.out.println("***LAST PLAYER PLAYED A SKIP!***");
 		    }
 		}
 
@@ -200,7 +200,10 @@ public class Woo {
 		if (move == 1){
 		    Card lastCard = discardPile.get(discardPile.size()-1);
 		    if( lastCard instanceof SpecialCard && (((SpecialCard)lastCard).getAction() == 1)){ 
-			    System.out.println("***LAST PLAYER PLAYED A REVERSE!***");
+			System.out.println("***LAST PLAYER PLAYED A REVERSE!***");
+		    }
+		    if (allPlayers.size() == 2){
+			turn ++;
 		    }
 		}
 				
@@ -219,10 +222,10 @@ public class Woo {
 		//if the second to last card was a wild draw 4 (played by last player)	
 		if (move == 1){
 		    Card secondToLastCard = discardPile.get(discardPile.size()-2);
-		    if( secondToLastCard instanceof SpecialCard && ( ( (SpecialCard)secondToLastCard).getAction() == 5 ) ){ 
+		    if( secondToLastCard instanceof SpecialCard && ( ( (SpecialCard)secondToLastCard).getAction() == 5 ) ){
+			System.out.println("***LAST PLAYER PLAYED A WILD DRAW4!***");
 			for (int i = 0; i < 4; i++) {
 			    draw(currentPlayer);
-			    System.out.println("***LAST PLAYER PLAYED A WILD DRAW4!***");
 			}
 		    }
 		}
@@ -289,26 +292,25 @@ public class Woo {
 		    //if the player wants to call UNO
 		    if (currentPlayer.isCallUNO()) {
 			System.out.println("Call UNO! \n1.Yes \n2.No");
-			if (Keyboard.readInt()==1){
-			    if (currentPlayer.getCurrentCards().size()==1){ //add instance variable to player
-				currentPlayer.calledUNO=1; //IF 1 CARD-->CHECK OFF THEIR UNO STATUS!
-			    }
-			    else { //IF YOU DON'T HAVE UNO-->DRAW 2 CARDS
+			int callUNO = Keyboard.readInt();
+			if (callUNO == 1){
+			    if (currentPlayer.getCurrentCards().size() !=1){ 
+				//IF YOU DON'T HAVE UNO-->DRAW 2 CARDS
 				System.out.println("\nEek! You don't have UNO! Draw 2 Cards. \n");
 				System.out.println(draw(currentPlayer));
 				System.out.println(draw(currentPlayer));
 			    }
 			}
-			if (currentPlayer.getCurrentCards().size()==1){
-			    if (currentPlayer.calledUNO!=1){ //they didn't call UNO --> draw 2
-				System.out.println("\nSo close...yet so far. Remember to call UNO next time. Draw 2 \n");
-				System.out.println(draw(currentPlayer));		
-				System.out.println(draw(currentPlayer)+"\n");
-			    }
+
+			//if the currentPlayer only has one card left and he/she didnt call UNO
+			if (currentPlayer.getCurrentCards().size()==1 && callUNO == 2){			  
+			    System.out.println("\nSo close...yet so far. Remember to call UNO next time. Draw 2 \n");
+			    System.out.println(draw(currentPlayer));		
+			    System.out.println(draw(currentPlayer)+"\n");
 			}
 		    }
 		}
-    		
+		    		
 		if (move==2){ //DRAW
 		    System.out.println(draw(currentPlayer));
 		    //if the card that is drawn can be played
