@@ -22,9 +22,9 @@ Use the java.io.Console method readPassword() to hide a pin
 
 MID-DEVELOPMENT DESIGN CHANGES: 
 -Deck.java was removed since it became more annoying than helpful
--The way UNO would be called changed multiple times, from having it at the beginning of the turn, to making it a minigame, to moving it at the end of a turn.
--We did not allow a player to play a wild card after a wild card because it would be unfair to other players
--The action of the wild card was changed to just play any card you wanted.
+-The action of the wild card was changed to play any card you wanted, since it worked better with the framework we had and led to less thinking/rule following for the user.
+-The way UNO would be called changed multiple times, from having it at the beginning of the turn, to making it a minigame, to moving it at the end of a turn. It was changed since having it in the beginning seemed annoying for the user and the way it was formatted (with 3 options: play,draw, or call uno) did not account for having UNO after the second to last card was played. The minigame idea was scrapped as it would not have worked with the AI systems. This would've led to the minigame only being played when computers weren't present, and led to too many complex rules that would be overwhelming for the user.
+-We did not allow a player to play a wild card after a wild card because it would be unfair to other players.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 LESSONS LEARNED:
