@@ -9,6 +9,7 @@ UNO
 OBSTACLES OVERCOME:
 -Finally finished a full working project on Friday after multiple bugs.
 -Code broke the day before submission so we had to compare the old commits to the current files
+-Merge conflicts led to some issues
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 UNRESOLVED ISSUES:
@@ -21,8 +22,9 @@ Use the java.io.Console method readPassword() to hide a pin
 
 MID-DEVELOPMENT DESIGN CHANGES: 
 -Deck.java was removed since it became more annoying than helpful
--the way UNO would be called changed multiple times, from having it at the beginning of the turn, to making it a minigame, to moving it at the end of a turn.
--not allow player to play a wild card after a wild card because it would be unfair to other players
+-The way UNO would be called changed multiple times, from having it at the beginning of the turn, to making it a minigame, to moving it at the end of a turn.
+-We did not allow a player to play a wild card after a wild card because it would be unfair to other players
+-The action of the wild card was changed to just play any card you wanted.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 LESSONS LEARNED:
@@ -76,6 +78,12 @@ Xin Yi Chen :: revised the clearScreen method so it disabled scroll up function 
 2017-01-21
 --------------------------------------------------------------
 Terry Guan :: added sorting to Player class. Made it so that players cannot enter indexes out of range of the array. Added game-end sequence. Added pins security
+--------------------------------------------------------------
+2017-01-22
+--------------------------------------------------------------
+Terry Guan :: fixed clearscreen() and debugged sorting methods, started AI
+Melanie Chow :: shortened rules, revised the callUNO method, and ran tests.
+Xin Yi Chen :: Added comments, action card messages, and exceptions. Fixed reverse as a skip. Ran tests
 --------------------------------------------------------------
 2017-01-23
 --------------------------------------------------------------
