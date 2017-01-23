@@ -508,13 +508,14 @@ public class Woo {
 			((Ai)currentPlayer).setScore(score);
 		    
 			//if the player has 500 pts then he/she won the whole game
-			if ((Ai)currentPlayer).getScore() >= 500) {
+			if (((Ai)currentPlayer).getScore() >= 500) {
 			    System.out.println("AI won the whole game!");
 			    break;
 			}
 			else {
 			    playGame();
 			}
+		    }
 		}
 	    }
 	}
