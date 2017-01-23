@@ -93,9 +93,8 @@ public class Player{
 	for (int x = 1; x < currentCards.size(); x++) {
 	    int counter = x; 
 	    for (int n = x - 1; n >= 0; n--) {
-		System.out.println(currentCards.get(x) + ": (is being switched)  " + currentCards.get(x).getNum());
 		if (currentCards.get(counter).getNum() < currentCards.get(n).getNum()  ) {
-		     System.out.println(currentCards.get(n) + ": " + currentCards.get(n).getNum());
+		    currentCards.set(n, currentCards.set(counter, currentCards.get(n)));
 		    counter--;
 		}
 	    }
