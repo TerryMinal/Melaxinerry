@@ -32,7 +32,7 @@ public class Ai extends Player {
 	}
     }
 
-    public playCard(int index, ArrayList<Card> discarded) {
+    public boolean playCard(int index, ArrayList<Card> discarded) {
 	if (currentCards.get(index).getNum() >= 13) {
 	    int[] color = new int[5];
 	    for (Card s : currentCards) {
@@ -46,14 +46,11 @@ public class Ai extends Player {
 	    }
 	    currentCards.get(index).setColor(max);
 	    if (currentCards.get(index).getNum() == 13) {
-		super.sortCardColor(max);
-		super.playCard(0, discarded);
+		super.sortCardsColor(max);
+		return super.playCard(0, discarded);
 	    }
-	    
 	}
-	else {
-	    super.playCard(index, discarded);
-	}
+	    return super.playCard(index, discarded);
     }
     
     public void determineNormalCards(ArrayList<Card> discarded) {
@@ -66,11 +63,11 @@ public class Ai extends Player {
 		playable.add(d); 
 	    }
 	}
-	int index;
+	int index = 0;
 	double Lprob = 1;
 	double tempProb; 
 	// calculate probability of other players having cards
-	for (int i = 0; i < playable; i++) {
+	for (int i = 0; i < playable.size(); i++) {
 	    tempProb = calculateProb(discarded, playable.get(i) );
 	    if ( tempProb < Lprob) {
 		Lprob =tempProb;
@@ -80,8 +77,10 @@ public class Ai extends Player {
 	playCard(index, discarded);
     }
 
-    public Card determineSpecialCards(int turn, ArrayList<Player> players, ArrayList<Card> discarded) {
+    public void determineSpecialCards(int turn, ArrayList<Player> players, ArrayList<Card> discarded) {
 	super.sortCardsNum();
+	Player nextP = players.get( ((turn + 1) % players.size() ) + players.size());
+	Player RnextP = players.get( ((turn - 1) % players.size() ) + players.size());
 	if (currentCards.size() == 2) {
 	    for (int i = 0; i < 2; i++ ) {
 		if (currentCards.get(i).getNum() == 13) {
@@ -96,14 +95,12 @@ public class Ai extends Player {
 	}
 	//prevent player from winning
  	if (nextP.getCurrentCards().size() <= 3) {
-	    if (currentCards.get(currentCards.size() - 1) > 9) {
+	    if (currentCards.get(currentCards.size() - 1).getNum() > 9) {
 		playCard(currentCards.size() - 1, discarded); 
 	    }
 	}
-	Player nextP = players.get( ((turn + 1) % players.size() ) + players.size());
-	Player RnextP = players.get( ((turn - 1) % players.size() ) + players.size());
-	PHandSize = nextP.getCurrentCards().size();
-	RPHandSize = RnextP.getCurrentCards().size();
+	int PHandSize = nextP.getCurrentCards().size();
+	int RPHandSize = RnextP.getCurrentCards().size();
 	if (PHandSize < 5) {
 	    if (Card.isMatch(discarded.get(discarded.size() - 1), currentCards.get(currentCards.size() - 1))) {
 		playCard(currentCards.size() - 1, discarded);
@@ -112,7 +109,7 @@ public class Ai extends Player {
     }
     
     //calculates probability of a card being played in the future by another player
-    private double calcualteProb(ArrayList<Card> discarded, Card C) {	
+    private double calculateProb(ArrayList<Card> discarded, Card C) {	
 	double denom = 108 - discarded.size() -  currentCards.size();
 	// calculate probability of other players having cards
 	    int colProp = C.getColor();
@@ -125,7 +122,7 @@ public class Ai extends Player {
 		    numUsed--;
 	    }
 	    for (Card z : discarded) {
-		if (s.getColor() == colProp || s.getNum() == numProp)
+		if (z.getColor() == colProp || z.getNum() == numProp)
 		    numUsed++;
 		if (z.getColor() == colProp && z.getNum() == numProp)
 		    numUsed--;

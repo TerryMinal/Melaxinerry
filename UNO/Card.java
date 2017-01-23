@@ -90,6 +90,12 @@ public class Card {
 	return this.color;
     }
 
+    public int setColor(int color) {
+	int oldColor = this.color;
+	this.color = color;
+	return oldColor;
+    }
+    
     public int getNum() {
 	return num; 
     }

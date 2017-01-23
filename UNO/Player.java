@@ -8,6 +8,9 @@ public class Player{
     protected int score;
     protected String pin; //4-digit
     protected ArrayList <Card> currentCards;
+
+    public Player() {
+    }
     
     public Player(String name, String pin){
 	this.name = name;

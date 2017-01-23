@@ -13,7 +13,7 @@ public class Woo {
 
     public Woo() {
 	numAi = 0;
-	numRealPlayers = 0;	
+	numRealPlayers = 0;
 	allPlayers = new ArrayList<Player>();
 	discardPile = new ArrayList<Card>();
    	drawPile = Card.createDeck();
@@ -156,11 +156,17 @@ public class Woo {
 
 	//max number of players: 5
 	if (typegame==1){ 
-	    System.out.print("How many players?:"); 
+	    System.out.print("How many real players?:"); 
 	    numRealPlayers=Keyboard.readInt();
-	    while (numRealPlayers < 2 || numRealPlayers > 5){
-		 System.out.print("UNO games consist of 2-5 players. Enter a value between 2-5:"); 
+	    while (numRealPlayers < 1 || numRealPlayers > 5){
+		 System.out.print("UNO games consist of 2-5 players. Enter a value between 1-5:"); 
 		numRealPlayers=Keyboard.readInt();
+	    }
+	    System.out.print("How many computer/Ai players?:"); 
+	    numAi=Keyboard.readInt();
+	    while (numAi < 0 || numAi > (5 - numRealPlayers) ) {
+		System.out.print("UNO games consist of 2-5 players. Enter a value less than or equal to " + (5 - numRealPlayers) + ":"); 
+		numAi=Keyboard.readInt();
 	    }
 	}
 
@@ -183,6 +189,9 @@ public class Woo {
 		}
 	    }
 	    allPlayers.add(new Player(tempName, tempPin));
+	}
+	for (int i = 0; i < numAi; i++) {
+	    allPlayers.add(new Ai());
 	}
 	rollDice();
 	//System.out.println(allPlayers);
