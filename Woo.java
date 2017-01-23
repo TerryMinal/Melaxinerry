@@ -325,13 +325,13 @@ public class Woo {
 				while (cardIndex > (currentPlayer.getCurrentCards() ).size() - 1 || cardIndex < 0) {
 				    System.out.println("the inputed index is out of bound. Re-enter an index");
 				    cardIndex = Keyboard.readInt();
-				    if (currentPlayer.getCurrentCards().size() != 1){
-					Card temp = currentPlayer.getCurrentCards().get(cardIndex);
-					if(temp instanceof SpecialCard){
-					    while(((SpecialCard)temp).getAction() ==  4 || ((SpecialCard)temp).getAction() ==  5){
-						System.out.println("You cannot play a wild card after a wild card. Re-enter an index:");
-						cardIndex = Keyboard.readInt();
-					    }
+				}
+				if (currentPlayer.getCurrentCards().size() != 1){
+				    Card temp = currentPlayer.getCurrentCards().get(cardIndex);
+				    if(temp instanceof SpecialCard){
+					while(((SpecialCard)temp).getAction() ==  4 || ((SpecialCard)temp).getAction() ==  5){
+					    System.out.println("You cannot play a wild card after a wild card. Re-enter an index:");
+					    cardIndex = Keyboard.readInt();
 					}
 				    }
 				}
@@ -402,13 +402,13 @@ public class Woo {
 					while (cardIndex > (currentPlayer.getCurrentCards() ).size() - 1 || cardIndex < 0) {
 					    System.out.println("the inputed index is out of bound. Re-enter an index");
 					    cardIndex = Keyboard.readInt();
-					    if (currentPlayer.getCurrentCards().size() != 1){
-						Card temp = currentPlayer.getCurrentCards().get(cardIndex);
-						if(temp instanceof SpecialCard){
-						    while(((SpecialCard)temp).getAction() ==  4 || ((SpecialCard)temp).getAction() ==  5){
-							System.out.println("You cannot play a wild card after a wild card. Re-enter an index:");
-							cardIndex = Keyboard.readInt();
-						    }
+					}
+					if (currentPlayer.getCurrentCards().size() != 1){
+					    Card temp = currentPlayer.getCurrentCards().get(cardIndex);
+					    if(temp instanceof SpecialCard){
+						while(((SpecialCard)temp).getAction() ==  4 || ((SpecialCard)temp).getAction() ==  5){
+						    System.out.println("You cannot play a wild card after a wild card. Re-enter an index:");
+						    cardIndex = Keyboard.readInt();
 						}
 					    }
 					}
