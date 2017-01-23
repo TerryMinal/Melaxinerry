@@ -12,7 +12,6 @@ OBSTACLES OVERCOME:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 UNRESOLVED ISSUES:
--rules is still too clunky. User will probably not want to read.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 COOL STUFF LEARNED:
@@ -23,6 +22,7 @@ ANSI escape code for clearing the terminal screen
 MID-DEVELOPMENT DESIGN CHANGES: 
 -Deck.java was removed since it became more annoying than helpful
 -the way UNO would be called changed multiple times, from having it at the beginning of the turn, to making it a minigame, to moving it at the end of a turn.
+-not allow player to play a wild card after a wild card because it would be unfair to other players
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 LESSONS LEARNED:
