@@ -20,6 +20,7 @@ public class Woo {
 	Card.shuffle(drawPile);
     }
 
+    //beginning of each game: each player gets 7 cards
    public void distribute() {
        for (int i = 0; i < allPlayers.size(); i++) {
 	    for (int n = 0; n < 7; n++) {
@@ -28,6 +29,8 @@ public class Woo {
 	}
    }
 
+    //determines who goes first and then the turns will go clockwise
+    //ex: players 1,2,3 and the "dice" returns 2, the turns will go by [2,3,1]
     public void rollDice(){	
 	int first= (int)(Math.random()*(allPlayers.size()));
 	//System.out.println(first);
@@ -38,6 +41,8 @@ public class Woo {
 	}				
     }
 
+    //reverse the order of the turns
+    //ex. the current order [1,2,3] and player 2 plays a reverse card, the order will become [2,1,3]
      public void reverse(int index){
 	ArrayList<Player> temp = new ArrayList<Player>();
 	temp.add(allPlayers.get(index));
@@ -50,7 +55,8 @@ public class Woo {
 	allPlayers = temp;
 	System.out.println(allPlayers);
     }
-    
+
+    //if the drawPile is empty, it will turn the discardPile into the drawPile and shuffle it
     public void checkDiscardPile(){
 	if (drawPile.size() == 0) {
 	    drawPile = discardPile;
@@ -58,7 +64,7 @@ public class Woo {
 	    discardPile = new ArrayList<Card>();
 	}
     }	
-
+ 
     public String mkPin() {
 	Console pwd = System.console();
 	char[] pass = pwd.readPassword();
@@ -69,11 +75,14 @@ public class Woo {
  	return retStr;
     }
 
+    //the currentPlayer draws the last card from the drawPile
     public String draw(Player currentPlayer){
 	checkDiscardPile();
 	currentPlayer.draw(drawPile);
 	return "You drew: "+currentPlayer.getCurrentCards().get(currentPlayer.getCurrentCards().size()-1);
     }
+
+    //asks if the player wants to sort his current cards
     public static void sort(Player currentPlayer) {
 	currentPlayer.sortCards();
 	System.out.println("would you like to sort again: \n1:Yes \n2:No");
@@ -88,6 +97,8 @@ public class Woo {
 	else
 	    return; 
     }
+
+    //the first card of the game
     public void firstCard(){
 	//if the last card (which becomes the first card) is a specialCard -> re-shuffle
 	while (drawPile.get(drawPile.size() - 1) instanceof SpecialCard){
@@ -96,14 +107,15 @@ public class Woo {
 	System.out.println("The first card is: " + drawPile.get(drawPile.size() - 1));
 	discardPile.add(drawPile.remove(drawPile.size() - 1));
     }
-    
+
+    //clears the terminal screen and disabled scroll up
     public static void clearScreen() {
 	String cls="printf \"\033c\"";
-       	System.out.println(cls);
-	//System.out.print("\033[H\033[2J");  
-	//System.out.flush();  	
+       	System.out.println(cls);  	
     }
-    
+
+    //prints the start screen
+    //players enter their corresponding names & pins
     public void beginGame() {
 	String start="Welcome to UNO!\n"; 
 	start+="Enter 1 for starting the game! \n";
@@ -131,10 +143,18 @@ public class Woo {
 	    System.out.print(start);
 	    typegame=Keyboard.readInt();
 	}
+
+	//max number of players: 5
 	if (typegame==1){ 
-	    System.out.print("How many players?:"); //does not take into account if # of players >5
-	    numRealPlayers=Keyboard.readInt();	    
+	    System.out.print("How many players?:"); 
+	    numRealPlayers=Keyboard.readInt();
+	    while (numRealPlayers < 2 || numRealPlayers > 5){
+		 System.out.print("The max number of players is 5. Please enter an integer between 2 to 5 inclusive:"); 
+		 numRealPlayers=Keyboard.readInt();
+	    }
 	}
+
+	//creates the players
 	for (int i = 0; i < numRealPlayers; i++) {
 	    //set name
 	    System.out.println("Enter player"+(i + 1) +" name:");	
@@ -194,17 +214,22 @@ public class Woo {
 			}
 		    }
 		}
-	    
-		
+
+		//player need to enter their pin before allowed to play
 		System.out.println("Player "+ currentPlayer + "'s turn:");
 	        currentPlayer.checkPin();
+
+		//displays the current player's info
 		System.out.println("============================================");		
 		System.out.println("Top most card played: " + discardPile.get(discardPile.size() - 1));	
 		System.out.println("Your current hand: " + currentPlayer.getCurrentCards());
 		System.out.println("What would you like to do? \n 1. Play \n 2. Draw \n");
 		move= Keyboard.readInt();
+		
 		if (move==1){ //PLAY
 		    System.out.println("Your current hand: " + currentPlayer.getCurrentCards());
+
+		    //if the player wants to sort his/her cards
 		    System.out.println("Would you like to sort: \n1:Yes \n2:No");
 		    int sortQ = Keyboard.readInt();
 		    while (sortQ < 1 || sortQ > 2) {
@@ -212,14 +237,14 @@ public class Woo {
 			sortQ = Keyboard.readInt();
 		    }
 		    if (sortQ == 1) {
-
 			sort(currentPlayer);
 		    }
+		    
 		    System.out.println("enter the card you want to play by entering the index:"); 
 		    int cardIndex = Keyboard.readInt();
 		    //checks if the index would return an error
-		    while (cardIndex >= (currentPlayer.getCurrentCards() ).size() - 1 ) {
-			System.out.println("the inputed index is too large. Re-enter an index");
+		    while (cardIndex >= (currentPlayer.getCurrentCards() ).size() - 1 || cardIndex < 0) {
+			System.out.println("the inputed index is out of bound. Re-enter an index");
 			cardIndex = Keyboard.readInt();
 		    }
 		    while( !(currentPlayer.playCard(cardIndex, discardPile)) ){
@@ -232,7 +257,7 @@ public class Woo {
 			cardIndex = Keyboard.readInt();
 		    }
 		    
-		    
+		    //if the card played is a special card
 		    Card thisCard = discardPile.get(discardPile.size()-1);
 		    if( thisCard instanceof SpecialCard){
 			//if the card played is a reverse
@@ -248,7 +273,8 @@ public class Woo {
 			    currentPlayer.playCard(cardIndex, discardPile);
 			}
 		    }
-		
+
+		    //if the player wants to call UNO
 		    if (currentPlayer.isCallUNO()) {
 			System.out.println("Call UNO! \n1.Yes \n2.No");
 			if (Keyboard.readInt()==1){
@@ -284,7 +310,8 @@ public class Woo {
 			    move = 1;  
 			    int index = currentPlayer.getCurrentCards().size()-1;
 			    currentPlayer.playCard(index, discardPile);
-			    
+
+			    //if the card played is a special card
 			    Card thisCard = discardPile.get(discardPile.size()-1);
 			    if( thisCard instanceof SpecialCard){
 				//if the card played is a reverse
@@ -303,8 +330,8 @@ public class Woo {
 			}
 		    }// end of draw and play
 		}
-	       
-		if (currentPlayer.getCurrentCards().size() == 0) {
+
+		if (currentPlayer.getCurrentCards().size() == 0) { //if the player wins this round
 		    System.out.println("WINNER!");
 		    int score = 0; 
 		    for (Player s : allPlayers) {
@@ -313,6 +340,8 @@ public class Woo {
 			}
 		    }
 		    currentPlayer.setScore(score);
+		    
+		    //if the player has 500 pts then he/she won the whole game
 		    if (currentPlayer.getScore() >= 500) {
 			System.out.println("You won the whole game!");
 			break;
@@ -322,10 +351,13 @@ public class Woo {
 		    }
 		}
 
+		//displays the current player's info after he play or draw
 		System.out.println("Current hand: " + currentPlayer.getCurrentCards());
 		System.out.println("Top most card played: " + discardPile.get(discardPile.size() - 1));	
 		System.out.println("============================================");
 	        System.out.println("\nEnd Turn? \n 1.Yes");
+
+		//ends the current player's turn
 		int next = Keyboard.readInt();
 		while (next != 1){
 		    System.out.println("Your turn is over. End Turn? \n 1.Yes");
