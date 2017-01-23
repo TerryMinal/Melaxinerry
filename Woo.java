@@ -285,12 +285,6 @@ public class Woo {
 			System.out.println("What would you like to do? \n 1. Play \n 2. Draw \n");
 			move= Keyboard.readInt();
 		    }
-		    System.out.println("are you sure? \n 1:Yes \n 2:No  \n");
-		    int mkSure = Keyboard.readInt();
-		    if (mkSure < 1 || mkSure > 2) {
-			System.out.println("please enter a correct resonse: ");
-			mkSure = Keyboard.readInt(); 
-		    }
 		    if (move==1){ //PLAY
 			System.out.println("Your current hand: " + currentPlayer.getCurrentCards());
 
