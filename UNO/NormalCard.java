@@ -7,6 +7,7 @@ public class NormalCard extends Card {
 	pointVal = i; //Number cards count their face value
     }//end overloaded constructor
 
+    //returns the corresponding [color:number]
     public String toString(){
 	String retStr = "";
 	if (color == 1){

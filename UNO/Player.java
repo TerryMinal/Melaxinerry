@@ -16,7 +16,9 @@ public class Player{
 	this.pin = pin;
 	currentCards = new ArrayList<Card>();
     }//end constructor
-    
+
+    //check if the played card and the last card of the discardPile match
+    //if they match, it will play the card and return true
     public boolean playCard(int index, ArrayList<Card> playedArea) {
 	if( Card.isMatch( (playedArea.get(playedArea.size()-1)) ,currentCards.get(index) ) ) {	    
 	    playedArea.add(currentCards.remove(index));
@@ -41,6 +43,7 @@ public class Player{
 	}
     }
 
+    //if the current player has 0 current cards -> wins the round
     public boolean win(){
 	if (currentCards.size() == 0) {
 	    return true;
@@ -122,7 +125,8 @@ public class Player{
 	this.score = score;
 	return oldScore;
     }
-    
+
+    //check if the pin entered is correct
     public void checkPin(){
 	System.out.println("Please enter the pin:");
 	Console pwd = System.console();

@@ -43,7 +43,8 @@ public class SpecialCard extends Card {
     public int getAction(){
 	return this.action;
     }
-    
+
+    //returns the corresponding [color:action]
     public String toString(){
 	String retStr = "";
 	if (color == 1){
