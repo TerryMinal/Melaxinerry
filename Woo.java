@@ -119,7 +119,7 @@ public class Woo {
     public void playerCardInfo(){
 	String info = "==============================================\n";
 	for (int i = 0; i < allPlayers.size(); i ++){
-	    info = info +  allPlayers.get(i) + " has " + allPlayers.get(i).getCurrentCards.size()+" cards left.\n";
+	    info = info +  allPlayers.get(i) + " has " + allPlayers.get(i).getCurrentCards().size()+" cards left.\n";
 	}
 	info += "==============================================\n";
 	System.out.println(info);
