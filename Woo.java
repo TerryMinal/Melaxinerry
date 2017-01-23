@@ -209,6 +209,10 @@ public class Woo {
 				turn --;
 			    }
 			}
+			//if skips the last person
+			if (turn == allPlayers.size()-1){
+			    turn = 0;
+			}
 			else{
 			    turn ++;
 			}
