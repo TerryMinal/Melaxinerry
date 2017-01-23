@@ -495,9 +495,27 @@ public class Woo {
 		    }
 		} //end of if not Ai
 		clearScreen();
-		if (currentPlayer instanceof Ai) 
-		    ((Ai)currentPlayer).analyzeAndPlay(turn, allPlayers, drawPile, discardPile); 
-	    
+		if (currentPlayer instanceof Ai) {
+		    ((Ai)currentPlayer).analyzeAndPlay(turn, allPlayers, drawPile, discardPile);
+		    if (((Ai)currentPlayer).getCurrentCards().size() == 0) { //if the ai wins this round
+			System.out.println("AI THE WINNER!");
+			int score = 0; 
+			for (Player s : allPlayers) {
+			    for (Card x : s.getCurrentCards() ) {
+				score += x.getPoint(); 
+			    }
+			}
+			((Ai)currentPlayer).setScore(score);
+		    
+			//if the player has 500 pts then he/she won the whole game
+			if ((Ai)currentPlayer).getScore() >= 500) {
+			    System.out.println("AI won the whole game!");
+			    break;
+			}
+			else {
+			    playGame();
+			}
+		}
 	    }
 	}
     }
