@@ -78,7 +78,7 @@ public class Ai extends Player {
 	for (int i = 0; i < playable.size(); i++) {
 	    if(playable.size() == 0) {
 		super.draw(drawPile); 
-		Return;
+		return ;
 	    }
 	    tempProb = calculateProb(discarded, playable.get(i) );
 	    else if ( tempProb < Lprob) {
