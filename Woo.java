@@ -305,7 +305,7 @@ public class Woo {
 
 		    //if the player wants to call UNO
 
-		    System.out.println("Call UNO! \n1.Yes \n2.No");
+		    System.out.println("\nDo you want to call UNO? \n1.Yes \n2.No");
 		    int callUNO = Keyboard.readInt();
 		    if (callUNO == 1){
 			if (currentPlayer.getCurrentCards().size() !=1){ 
@@ -357,7 +357,7 @@ public class Woo {
 			    }
 			    //if the player wants to call UNO
 
-			    System.out.println("Call UNO! \n1.Yes \n2.No");
+			    System.out.println("\nDo you want to call UNO? \n1.Yes \n2.No");
 			    int callUNO = Keyboard.readInt();
 			    if (callUNO == 1){
 				if (currentPlayer.getCurrentCards().size() !=1){ 
