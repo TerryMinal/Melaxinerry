@@ -16,7 +16,7 @@ UNRESOLVED ISSUES:
 
 COOL STUFF LEARNED:
 ANSI escape code for clearing the terminal screen
-<insert thing> to hide a pin
+Use the java.io.Console method readPassword() to hide a pin
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 MID-DEVELOPMENT DESIGN CHANGES: 
@@ -29,7 +29,8 @@ LESSONS LEARNED:
 -Strings equality is still .equal()
 -Have a plan and communicate.
 -Test, test, test.
--Finish early and save at least a whole day solely for exception handling 
+-Finish early and save at least a whole day solely for exception handling
+-Sleep deprivation leads to decrease REM sleep which results in decreased memory consolidation 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 2017-01-11
@@ -74,10 +75,11 @@ Xin Yi Chen :: revised the clearScreen method so it disabled scroll up function 
 --------------------------------------------------------------
 2017-01-21
 --------------------------------------------------------------
-Terry Guan :: added sorting to Player class. Made it so that players cannot enter indexes out of range of the array. Added game-end sequence. Added pins security 
+Terry Guan :: added sorting to Player class. Made it so that players cannot enter indexes out of range of the array. Added game-end sequence. Added pins security
 --------------------------------------------------------------
 2017-01-23
 --------------------------------------------------------------
+Everyone :: ran tests and debugged
 Xin Yi Chen :: Added comments and messages for specialCards. Added exceptions using while loops. Added method to display how many cards each player has currently. Revised UML and flowchart.
-Xin Yi Chen && Melanie Chow :: ran tests and debugged
---------------------------------------------------------------
+Terry Guan :: added Ai class
+-------------------------------------------------------------
