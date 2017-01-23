@@ -135,18 +135,16 @@ public class Woo {
 	int typegame=Keyboard.readInt();
 	while (typegame < 1 || typegame >= 2){	   
 	    if (typegame==2){
-		String rules="How to Play:\n";
-		rules+="A game of UNO consists of 2-5 players. Each player starts with 7 cards \n";
-		rules+="A dice is rolled to see who goes first.\n";
-		rules+="On a players turn, he/she must do ONE of the following: Draw or Play or Call UNO.\n";
-		rules+="-play a card matching the discard in either color, number, or symbol\n";
-		rules+="-play a Wild card, or a playable Wild Draw Four card\n";
-		rules+="-draw a card from the deck.\n";
-		rules+="-you must call UNO when you have one card left. If you didn't call UNO before your turn is over, you will draw 2 cards. If you call UNO when you have more than one card, you will draw 4 cards.\n";
+		String rules="\nHow to Play:\n";
+		rules+="1. A game consists of 2-5 players. Each player starts with 7 cards and a dice is rolled \n";
+		rules+="2. On your turn, you must either draw or play \n";
+		rules+="3. To play a card, the color or number must match the last played card.\n";
+		rules+="4. You must call UNO when you have one card left, or else you will draw 2 cards. If you call UNO when you have more than one card, you will draw 2 cards.\n\n";
 		rules+="How to Win:\n";
-		rules+="The first player to get rid of his/her last card wins the round and scores points for the cards held by the other players.Number cards count their face value, all action cards count 20, and Wild and Wild Draw Four cards count 50. If a Draw Two or Wild Draw Four card is played to go out, the next player in sequence must draw the appropriate number of cards before the score is tallied. \n";
-		rules+="First player to reach 500 points wins. \n";
-		rules+="==============================================\n";
+		rules+="1. The first player to get rid of his/her last card wins!\n";
+		rules+="2. Cards from the other players hand are added to the winner's score: \n\n     Card Values:\n    -Number Cards: their face value \n    -Action Cards (skip, reverse, draw2): 20 \n    -Wild/Wild Draw 4: 50 \n\n";
+		rules+="3. The first player to reach 500 points wins. \n\n";
+		rules+="==============================================\n\n";
 
 		System.out.print(rules);
 		typegame=0;
@@ -160,7 +158,7 @@ public class Woo {
 	    System.out.print("How many players?:"); 
 	    numRealPlayers=Keyboard.readInt();
 	    while (numRealPlayers < 2 || numRealPlayers > 5){
-		System.out.print("The max number of players is 5. Please enter an integer between 2 to 5 inclusive:"); 
+		 System.out.print("UNO games consist of 2-5 players. Enter a value between 2-5:"); 
 		numRealPlayers=Keyboard.readInt();
 	    }
 	}
