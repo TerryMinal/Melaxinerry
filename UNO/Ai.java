@@ -9,9 +9,13 @@ public class Ai extends Player {
 	super.currentCards = new ArrayList<Card>();
     }
 
-    public boolean drawOrNot(int turn, int allPlayers, ArrayList<Card> discarded) {
-	int numPlayers = allPlayers.size(); 
-	int nextP = turn + 1; 
+    public void anaylzeAndPlay(int turn, ArrayList<Player> allPlayers, ArrayList<Card> discarded) {
+	drawOrNot(turn, discarded);
+	determineSpecialCards(turn, allPlayers, discarded);
+	determineNormalCards(discarded); 
+    }
+
+    public boolean drawOrNot(int turn, ArrayList<Card> discarded) {
 	boolean tf = false;
 	//checking for case where card cannot be played
 	for (Card s : currentCards) {
@@ -27,8 +31,32 @@ public class Ai extends Player {
 	    return true;
 	}
     }
+
+    public playCard(int index, ArrayList<Card> discarded) {
+	if (currentCards.get(index).getNum() >= 13) {
+	    int[] color = new int[5];
+	    for (Card s : currentCards) {
+		color[s.getColor() - 1] += 1;
+	    }
+	    int max = 0; 
+	    for (int i = 0; i < 5; i++) {
+		if (color[i] > max) {
+		    max = i;
+		}
+	    }
+	    currentCards.get(index).setColor(max);
+	    if (currentCards.get(index).getNum() == 13) {
+		super.sortCardColor(max);
+		super.playCard(0, discarded);
+	    }
+	    
+	}
+	else {
+	    super.playCard(index, discarded);
+	}
+    }
     
-    public Card determineNormalCards(ArrayList<Card> discarded) {
+    public void determineNormalCards(ArrayList<Card> discarded) {
 	int topColor = discarded.get(discarded.size() - 1).getColor();
 	int topNum = discarded.get(discarded.size() - 1).getNum();
 	ArrayList<Card> playable = new ArrayList<Card>();
@@ -38,7 +66,7 @@ public class Ai extends Player {
 		playable.add(d); 
 	    }
 	}
-	Card play;
+	int index;
 	double Lprob = 1;
 	double tempProb; 
 	// calculate probability of other players having cards
@@ -46,26 +74,29 @@ public class Ai extends Player {
 	    tempProb = calculateProb(discarded, playable.get(i) );
 	    if ( tempProb < Lprob) {
 		Lprob =tempProb;
-		play = playable.get(i);
+		index = i; 
 	    }
 	}
-	return play;
+	playCard(index, discarded);
     }
 
     public Card determineSpecialCards(int turn, ArrayList<Player> players, ArrayList<Card> discarded) {
-	Player nextP = players.get(turn + 1);
+	super.sortCardsNum();
 	if (currentCards.size() == 2) {
 	    for (int i = 0; i < 2; i++ ) {
 		if (currentCards.get(i).getNum() == 13) {
-		    playCard(i, discarded); 
+		    playCard(i, discarded);
 		}
-		Card play = determineNormalCards(discarded); 
+		
+		if (Card.isMatch(discarded.get(discarded.size() - 1), currentCards.get(i))) {
+		    playCard(i, discarded);
+		    break; 
+		}
 	    }
 	}
 	//prevent player from winning
  	if (nextP.getCurrentCards().size() <= 3) {
-	    super.sortCardsNum();
-	    if (currentCards.get(currentCards.size() - 1) > 10) {
+	    if (currentCards.get(currentCards.size() - 1) > 9) {
 		playCard(currentCards.size() - 1, discarded); 
 	    }
 	}
@@ -74,8 +105,8 @@ public class Ai extends Player {
 	PHandSize = nextP.getCurrentCards().size();
 	RPHandSize = RnextP.getCurrentCards().size();
 	if (PHandSize < 5) {
-	    if (PHandSize < RPHandSize) {
-		
+	    if (Card.isMatch(discarded.get(discarded.size() - 1), currentCards.get(currentCards.size() - 1))) {
+		playCard(currentCards.size() - 1, discarded);
 	    }
 	}
     }
