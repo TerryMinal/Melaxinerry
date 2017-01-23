@@ -9,25 +9,30 @@ public class Ai extends Player {
 	super.currentCards = new ArrayList<Card>();
     }
 
-    public void anaylzeAndPlay(int turn, ArrayList<Player> allPlayers, ArrayList<Card> discarded) {
-	drawOrNot(turn, discarded);
-	determineSpecialCards(turn, allPlayers, discarded);
-	determineNormalCards(discarded); 
+    public void analyzeAndPlay(int turn, ArrayList<Player> allPlayers, ArrayList<Card> deck, ArrayList<Card> discarded) {
+	System.out.println("Move aiside JARVIS is playing");
+	if (drawOrNot(turn, deck, discarded))
+	    System.out.println("JARVIS drew a card");
+	else if (!(determineSpecialCards(turn, allPlayers, discarded)))
+	    determineNormalCards(discarded);
+	callUNO();
     }
 
-    public boolean drawOrNot(int turn, ArrayList<Card> discarded) {
-	boolean tf = false;
+    public boolean drawOrNot(int turn, ArrayList<Card> deck, ArrayList<Card> discarded) {
+	boolean cardInHand = false;
 	//checking for case where card cannot be played
 	for (Card s : currentCards) {
 	    if (s.getColor() == discarded.get(discarded.size() - 1).getColor() || s.getNum() == discarded.get(discarded.size() - 1).getNum() ) {
-		tf = true;
+		cardInHand = true;
 		break; 
 	    }
 	}
-	if (tf) {
+	//if there is a card in the hand that can be played
+	if (cardInHand) {
 	    return false; 
 	}
 	else {
+	    super.draw(deck); 
 	    return true;
 	}
     }
@@ -47,13 +52,15 @@ public class Ai extends Player {
 	    currentCards.get(index).setColor(max);
 	    if (currentCards.get(index).getNum() == 13) {
 		super.sortCardsColor(max);
+		System.out.println("JARVIS played: " + currentCards.get(0)); 
 		return super.playCard(0, discarded);
 	    }
 	}
-	    return super.playCard(index, discarded);
+	System.out.println("JARVIS played: " + currentCards.get(index)); 
+	return super.playCard(index, discarded);
     }
     
-    public void determineNormalCards(ArrayList<Card> discarded) {
+    private void determineNormalCards(ArrayList<Card> discarded) {
 	int topColor = discarded.get(discarded.size() - 1).getColor();
 	int topNum = discarded.get(discarded.size() - 1).getNum();
 	ArrayList<Card> playable = new ArrayList<Card>();
@@ -65,7 +72,7 @@ public class Ai extends Player {
 	}
 	int index = 0;
 	double Lprob = 1;
-	double tempProb; 
+	double tempProb;
 	// calculate probability of other players having cards
 	for (int i = 0; i < playable.size(); i++) {
 	    tempProb = calculateProb(discarded, playable.get(i) );
@@ -74,40 +81,38 @@ public class Ai extends Player {
 		index = i; 
 	    }
 	}
-	playCard(index, discarded);
+	System.out.println("JARVIS played: " + playable.get(index));
+	currentCards.remove(currentCards.indexOf(playable.get(index)));
+	discarded.add(playable.get(index));
     }
 
-    public void determineSpecialCards(int turn, ArrayList<Player> players, ArrayList<Card> discarded) {
+    private boolean determineSpecialCards(int turn, ArrayList<Player> players, ArrayList<Card> discarded) {
 	super.sortCardsNum();
-	Player nextP = players.get( ((turn + 1) % players.size() ) + players.size());
-	Player RnextP = players.get( ((turn - 1) % players.size() ) + players.size());
+	Player nextP = players.get( ((turn + 1) % (players.size() - 1)) + players.size() - 1);
+	Player RnextP = players.get( ((turn - 1) % (players.size() - 1) ) + players.size() - 1);
 	if (currentCards.size() == 2) {
 	    for (int i = 0; i < 2; i++ ) {
 		if (currentCards.get(i).getNum() == 13) {
-		    playCard(i, discarded);
+		    return playCard(i, discarded);
 		}
 		
-		if (Card.isMatch(discarded.get(discarded.size() - 1), currentCards.get(i))) {
-		    playCard(i, discarded);
-		    break; 
-		}
+		return playCard(i, discarded);
 	    }
 	}
 	//prevent player from winning
  	if (nextP.getCurrentCards().size() <= 3) {
 	    if (currentCards.get(currentCards.size() - 1).getNum() > 9) {
-		playCard(currentCards.size() - 1, discarded); 
+		return playCard(currentCards.size() - 1, discarded); 
 	    }
 	}
 	int PHandSize = nextP.getCurrentCards().size();
 	int RPHandSize = RnextP.getCurrentCards().size();
 	if (PHandSize < 5) {
-	    if (Card.isMatch(discarded.get(discarded.size() - 1), currentCards.get(currentCards.size() - 1))) {
-		playCard(currentCards.size() - 1, discarded);
-	    }
+	    return playCard(currentCards.size() - 1, discarded);
 	}
+	return false; 
     }
-    
+
     //calculates probability of a card being played in the future by another player
     private double calculateProb(ArrayList<Card> discarded, Card C) {	
 	double denom = 108 - discarded.size() -  currentCards.size();
@@ -155,5 +160,10 @@ public class Ai extends Player {
 	}
 	return false; 	    	
     }
-    
+
+    private void callUNO() {
+	if (currentCards.size() == 1) {
+	    System.out.println("UNO -- from JARVIS"); 
+	}
+    }
 } //class
