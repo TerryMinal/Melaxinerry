@@ -212,9 +212,14 @@ public class Woo {
 		    Card lastCard = discardPile.get(discardPile.size()-1);
 		    if( lastCard instanceof SpecialCard && (((SpecialCard)lastCard).getAction() == 1)){ 
 			System.out.println("***LAST PLAYER PLAYED A REVERSE!***");
-		    }
-		    if (allPlayers.size() == 2){
-			turn ++;
+			if (allPlayers.size() == 2){
+			    if (turn == 0){
+				turn ++;
+			    }
+			    if (turn == 1){
+				turn --;
+			    }
+			}
 		    }
 		}
 				
