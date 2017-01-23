@@ -319,11 +319,21 @@ public class Woo {
 			//if the currentPlayer played a wild card, he/she must play another card
 			if (((SpecialCard)thisCard).getAction() == 4 || ((SpecialCard)thisCard).getAction() == 5){
 			    if (currentPlayer.getCurrentCards().size() != 0){
+				System.out.println("Current hand: " + currentPlayer.getCurrentCards());
 				System.out.println("You just played a wild or wild draw 4 card! \n Enter the card you want to play by entering the index:");
 				cardIndex = Keyboard.readInt();
 				while (cardIndex > (currentPlayer.getCurrentCards() ).size() - 1 || cardIndex < 0) {
 				    System.out.println("the inputed index is out of bound. Re-enter an index");
 				    cardIndex = Keyboard.readInt();
+				    if (currentPlayer.getCurrentCards.size() != 1){
+					Card temp = currentPlayer.getCurrentCards().get(cardIndex);
+					if(temp instanceof SpecialCard){
+					    while(((SpecialCard)temp).getAction() ==  4 || ((SpecialCard)temp).getAction() ==  5){
+						System.out.println("You cannot play a wild card after a wild card. Re-enter an index:");
+						cardIndex = Keyboard.readInt();
+					    }
+					}
+				    }
 				}
 				currentPlayer.playCard(cardIndex, discardPile);
 			    }
@@ -386,6 +396,7 @@ public class Woo {
 				//if the currentPlayer played a wild card, he/she must play another card
 				if (((SpecialCard)thisCard).getAction() == 4 || ((SpecialCard)thisCard).getAction() == 5){
 				    if (currentPlayer.getCurrentCards().size() != 0){
+					System.out.println("Current hand: " + currentPlayer.getCurrentCards());
 					System.out.println("You just played a wild or wild draw 4 card! \n Enter the card you want to play by entering the index:");
 					int cardIndex = Keyboard.readInt();
 					while (cardIndex > (currentPlayer.getCurrentCards() ).size() - 1 || cardIndex < 0) {
