@@ -32,7 +32,8 @@ LESSONS LEARNED:
 -Have a plan and communicate.
 -Test, test, test.
 -Finish early and save at least a whole day solely for exception handling
--Sleep deprivation leads to decrease REM sleep which results in decreased memory consolidation 
+-Sleep deprivation leads to decrease REM sleep which results in decreased memory consolidation
+-Planning + deadlines + communication + testing = flow :) 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 2017-01-11
