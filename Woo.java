@@ -328,12 +328,12 @@ public class Woo {
 				}
 				if (currentPlayer.getCurrentCards().size() != 1){
 				    Card temp = currentPlayer.getCurrentCards().get(cardIndex);
-				    if(temp instanceof SpecialCard){
-					while(((SpecialCard)temp).getAction() ==  4 || ((SpecialCard)temp).getAction() ==  5){
-					    System.out.println("You cannot play a wild card after a wild card. Re-enter an index:");
-					    cardIndex = Keyboard.readInt();
-					}
+				   
+				    while(temp instanceof SpecialCard && (((SpecialCard)temp).getAction() ==  4 || ((SpecialCard)temp).getAction() ==  5)){
+					System.out.println("You cannot play a wild card after a wild card. Re-enter an index:");
+					cardIndex = Keyboard.readInt();
 				    }
+				    
 				}
 				currentPlayer.playCard(cardIndex, discardPile);
 			    }
@@ -405,11 +405,9 @@ public class Woo {
 					}
 					if (currentPlayer.getCurrentCards().size() != 1){
 					    Card temp = currentPlayer.getCurrentCards().get(cardIndex);
-					    if(temp instanceof SpecialCard){
-						while(((SpecialCard)temp).getAction() ==  4 || ((SpecialCard)temp).getAction() ==  5){
-						    System.out.println("You cannot play a wild card after a wild card. Re-enter an index:");
-						    cardIndex = Keyboard.readInt();
-						}
+					    while(temp instanceof SpecialCard && (((SpecialCard)temp).getAction() ==  4 || ((SpecialCard)temp).getAction() ==  5)){
+						System.out.println("You cannot play a wild card after a wild card. Re-enter an index:");
+						cardIndex = Keyboard.readInt();
 					    }
 					}
 					currentPlayer.playCard(cardIndex, discardPile);
