@@ -81,7 +81,7 @@ public class Ai extends Player {
 		return ;
 	    }
 	    tempProb = calculateProb(discarded, playable.get(i) );
-	    else if ( tempProb < Lprob) {
+	    if ( tempProb < Lprob) {
 		Lprob =tempProb;
 		index = i; 
 	    }
