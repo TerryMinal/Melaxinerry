@@ -21,13 +21,13 @@ public class Woo {
     }
 
     //beginning of each game: each player gets 7 cards
-   public void distribute() {
-       for (int i = 0; i < allPlayers.size(); i++) {
+    public void distribute() {
+	for (int i = 0; i < allPlayers.size(); i++) {
 	    for (int n = 0; n < 7; n++) {
 		allPlayers.get(i).draw(drawPile);
 	    }
 	}
-   }
+    }
 
     //determines who goes first and then the turns will go clockwise
     //ex: players 1,2,3 and the "dice" returns 2, the turns will go by [2,3,1]
@@ -44,7 +44,7 @@ public class Woo {
 
     //reverse the order of the turns
     //ex. the current order [1,2,3] and player 2 plays a reverse card, the order will become [2,1,3]
-     public void reverse(int index){
+    public void reverse(int index){
 	ArrayList<Player> temp = new ArrayList<Player>();
 	temp.add(allPlayers.get(index));
 	for (int x = index - 1; x >= 0; x --){
@@ -160,8 +160,8 @@ public class Woo {
 	    System.out.print("How many players?:"); 
 	    numRealPlayers=Keyboard.readInt();
 	    while (numRealPlayers < 2 || numRealPlayers > 5){
-		 System.out.print("The max number of players is 5. Please enter an integer between 2 to 5 inclusive:"); 
-		 numRealPlayers=Keyboard.readInt();
+		System.out.print("The max number of players is 5. Please enter an integer between 2 to 5 inclusive:"); 
+		numRealPlayers=Keyboard.readInt();
 	    }
 	}
 
@@ -212,9 +212,14 @@ public class Woo {
 		    Card lastCard = discardPile.get(discardPile.size()-1);
 		    if( lastCard instanceof SpecialCard && (((SpecialCard)lastCard).getAction() == 1)){ 
 			System.out.println("***LAST PLAYER PLAYED A REVERSE!***");
-		    }
-		    if (allPlayers.size() == 2){
-			turn ++;
+			if (allPlayers.size() == 2){
+			    if (turn == 0){
+				turn ++;
+			    }
+			    if (turn == 1){
+				turn --;
+			    }
+			}
 		    }
 		}
 				
@@ -254,7 +259,10 @@ public class Woo {
 		System.out.println("Your current hand: " + currentPlayer.getCurrentCards());
 		System.out.println("What would you like to do? \n 1. Play \n 2. Draw \n");
 		move= Keyboard.readInt();
-		
+		while (move != 1 && move != 2){
+		    System.out.println("What would you like to do? \n 1. Play \n 2. Draw \n");
+		    move= Keyboard.readInt();
+		}
 		if (move==1){ //PLAY
 		    System.out.println("Your current hand: " + currentPlayer.getCurrentCards());
 
@@ -307,6 +315,10 @@ public class Woo {
 
 		    System.out.println("\nDo you want to call UNO? \n1.Yes \n2.No");
 		    int callUNO = Keyboard.readInt();
+		    while (callUNO != 1 && callUNO != 2){
+			System.out.println("\nDo you want to call UNO? \n1.Yes \n2.No");
+			callUNO= Keyboard.readInt();
+		    }
 		    if (callUNO == 1){
 			if (currentPlayer.getCurrentCards().size() !=1){ 
 			    //IF YOU DON'T HAVE UNO-->DRAW 2 CARDS
@@ -334,6 +346,10 @@ public class Woo {
 			System.out.println("Current hand: " + currentPlayer.getCurrentCards());
 			System.out.println("Do you want to play the card that you just drew? 1.YES 2.NO");
 			int choice = Keyboard.readInt();
+			while (choice != 1 && choice != 2){
+			    System.out.println("Do you want to play the card that you just drew? 1.YES 2.NO");
+			    choice= Keyboard.readInt();
+			}
 			if (choice == 1){
 			    move = 1;  
 			    int index = currentPlayer.getCurrentCards().size()-1;
@@ -349,16 +365,22 @@ public class Woo {
 				}
 			
 				//if the currentPlayer played a wild card, he/she must play another card
-				if (((SpecialCard)thisCard).getAction() == 4 || ((SpecialCard)thisCard).getAction() == 5){ 
-				    System.out.println("You just played a wild or wild draw 4 card! \n Enter the card you want to play by entering the index:");
-				    int cardIndex = Keyboard.readInt();
-				    currentPlayer.playCard(cardIndex, discardPile);
+				if (((SpecialCard)thisCard).getAction() == 4 || ((SpecialCard)thisCard).getAction() == 5){
+				    if (currentPlayer.getCurrentCards().size() != 0){
+					System.out.println("You just played a wild or wild draw 4 card! \n Enter the card you want to play by entering the index:");
+					int cardIndex = Keyboard.readInt();
+					currentPlayer.playCard(cardIndex, discardPile);
+				    }
 				}
 			    }
 			    //if the player wants to call UNO
 
 			    System.out.println("\nDo you want to call UNO? \n1.Yes \n2.No");
 			    int callUNO = Keyboard.readInt();
+			    while (callUNO != 1 && callUNO != 2){
+				System.out.println("\nDo you want to call UNO? \n1.Yes \n2.No");
+				callUNO= Keyboard.readInt();
+			    }
 			    if (callUNO == 1){
 				if (currentPlayer.getCurrentCards().size() !=1){ 
 				    //IF YOU DON'T HAVE UNO-->DRAW 2 CARDS
