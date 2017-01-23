@@ -78,6 +78,6 @@ Terry Guan :: added sorting to Player class. Made it so that players cannot ente
 --------------------------------------------------------------
 2017-01-23
 --------------------------------------------------------------
-Xin Yi Chen :: Added comments and messages for specialCards. Added exceptions using while loops. Added method to display how many cards each player has currently.
+Xin Yi Chen :: Added comments and messages for specialCards. Added exceptions using while loops. Added method to display how many cards each player has currently. Revised UML and flowchart.
 Xin Yi Chen && Melanie Chow :: ran tests and debugged
 --------------------------------------------------------------
