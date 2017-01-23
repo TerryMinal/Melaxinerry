@@ -38,7 +38,8 @@ public class Woo {
 	    allPlayers.add(allPlayers.get(0));
 	    //System.out.println(a);
 	    allPlayers.remove(0);
-	}				
+	}
+	System.out.println("TURN ORDER: "+ allPlayers);
     }
 
     //reverse the order of the turns
@@ -53,7 +54,7 @@ public class Woo {
 	    temp.add(allPlayers.get(i));
 	}
 	allPlayers = temp;
-	System.out.println(allPlayers);
+	System.out.println("The new turn order: "+ allPlayers);
     }
 
     //if the drawPile is empty, it will turn the discardPile into the drawPile and shuffle it
@@ -191,6 +192,15 @@ public class Woo {
 		    Card lastCard = discardPile.get(discardPile.size()-1);
 		    if( lastCard instanceof SpecialCard && (((SpecialCard)lastCard).getAction() == 2)){ 
 			    turn ++;
+			    System.out.println("***LAST PLAYER PLAYED A SKIP!***");
+		    }
+		}
+
+		//if the last player played a reverse (only displays a message)
+		if (move == 1){
+		    Card lastCard = discardPile.get(discardPile.size()-1);
+		    if( lastCard instanceof SpecialCard && (((SpecialCard)lastCard).getAction() == 1)){ 
+			    System.out.println("***LAST PLAYER PLAYED A REVERSE!***");
 		    }
 		}
 				
@@ -202,6 +212,7 @@ public class Woo {
 		    if( lastCard instanceof SpecialCard &&( ( (SpecialCard)lastCard).getAction() == 3 )){ 
 			draw(currentPlayer);
 			draw(currentPlayer);
+			System.out.println("***LAST PLAYER PLAYED A DRAW2!***");
 		    }
 		}
 
@@ -211,6 +222,7 @@ public class Woo {
 		    if( secondToLastCard instanceof SpecialCard && ( ( (SpecialCard)secondToLastCard).getAction() == 5 ) ){ 
 			for (int i = 0; i < 4; i++) {
 			    draw(currentPlayer);
+			    System.out.println("***LAST PLAYER PLAYED A WILD DRAW4!***");
 			}
 		    }
 		}
